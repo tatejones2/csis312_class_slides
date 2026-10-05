@@ -31,4 +31,4 @@ Original documents are preserved unchanged. PowerPoint text is indexed by slide;
 
 Regenerate Office text with `python3 tools/extract_course.py`. On macOS, build the PDF OCR helper with `swiftc tools/ocr.swift -o /tmp/csis312-ocr`, then run `/tmp/csis312-ocr "input.pdf" "output.txt"`.
 
-The opening deck records a prohibition on AI use in assignments; see the course guide for its source.
+Tate confirmed on October 5, 2026 that the professor permits AI use despite the older wording in the slides. See the course guide for the updated context.

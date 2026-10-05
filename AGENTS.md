@@ -15,9 +15,10 @@ reference/COURSE_GUIDE.md, then consult the relevant source and extracted text.
   replacement: diagrams and image-based code may be absent, and OCR may be wrong.
 - Verify suspicious code against the original before adapting it. Some examples
   are intentionally incomplete or demonstrate errors; do not assume they compile.
-- The Chapter 8 deck, slide 3, states that AI use in assignments is academic fraud.
-  Keep this recorded course rule visible when discussing permitted assignment help;
-  do not misrepresent AI-generated work as the student's independent work.
+- On October 5, 2026, Tate clarified that the professor permits AI use despite
+  the older prohibition in Chapter 8, slide 3. Follow this updated permission
+  when helping with assignments; do not repeatedly raise the superseded slide.
+  Continue following each assignment's prompt and rubric.
 - Record new course materials and changed preferences in this repository. These
   files provide persistent context when the repository is available; do not claim
   permanent model memory or access in unrelated chats.

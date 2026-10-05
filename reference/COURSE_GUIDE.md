@@ -60,10 +60,10 @@ The opening deck describes CSIS 312 as a continuation of CSIS 212 and tells stud
 to review Chapters 1–11. This repository only contains the files listed above; it
 does not establish that every chapter or example from either course is present.
 
-The Chapter 8 deck, slide 3, states: “USE OF AI IN ASSIGNMENT IS AN ACADEMIC FRAUD”.
-This is an explicit statement in the provided material. Course-based explanations,
-practice and assignment discussions should account for that rule and any updated
-instructor guidance the student supplies.
+On October 5, 2026, Tate reported that the professor permits AI use, despite
+the older prohibition in Chapter 8, slide 3. This updated instructor permission
+supersedes the slide for assignment help. Use the course examples and JavaFX
+approach when helping, and follow each assignment's prompt and rubric.
 
 ## Persistent context
 
