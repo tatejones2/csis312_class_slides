@@ -1,0 +1,1811 @@
+// EXAMPLE 1
+/*This is an example WITHOUT exception handling and it will run when legal inputs are entered through the keyboard but the program would not know what to do whenever illegal inputs are entered */
+                                                                // Fig. 11.2: DivideByZeroNoExceptionHandling.java
+// Integer division without exception handling.
+import java.util.Scanner;
+
+public class DivideByZeroNoExceptionHandling {
+   // demonstrates throwing an exception when a divide-by-zero occurs
+   public static int quotient(int numerator, int denominator) {
+      return numerator / denominator; // possible division by zero
+   }
+
+   public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+
+      System.out.print("Please enter an integer numerator: ");
+      int numerator = scanner.nextInt();
+      System.out.print("Please enter an integer denominator: ");
+      int denominator = scanner.nextInt();
+
+      int result = quotient(numerator, denominator);
+      System.out.printf(
+         "%nResult: %d / %d = %d%n", numerator, denominator, result);
+   }
+}
+
+
+
+
+// EXAMPLE 2
+/*This is an example WITH exception handling and it will run when legal inputs are entered through the keyboard. It will also return appropriate error messages when whenever illegal inputs are entered */
+
+                                                                // Fig. 11.3: DivideByZeroWithExceptionHandling.java
+// Handling ArithmeticExceptions and InputMismatchExceptions.
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class DivideByZeroWithExceptionHandling
+{
+   // demonstrates throwing an exception when a divide-by-zero occurs
+   public static int quotient(int numerator, int denominator)
+      throws ArithmeticException {
+      return numerator / denominator; // possible division by zero
+   }
+
+   public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+      boolean continueLoop = true; // determines if more input is needed
+
+      do {
+         try { // read two numbers and calculate quotient
+            System.out.print("Please enter an integer numerator: ");
+            int numerator = scanner.nextInt();
+            System.out.print("Please enter an integer denominator: ");
+            int denominator = scanner.nextInt();
+
+            int result = quotient(numerator, denominator);
+            System.out.printf("%nResult: %d / %d = %d%n", numerator,
+               denominator, result);
+            continueLoop = false; // input successful; end looping
+         }
+         catch (InputMismatchException inputMismatchException) {
+            System.err.printf("%nException: %s%n",
+               inputMismatchException);
+            scanner.nextLine(); // discard input so user can try again
+            System.out.printf(
+               "You must enter integers. Please try again.%n%n");
+         }
+         catch (ArithmeticException arithmeticException) {
+            System.err.printf("%nException: %s%n", arithmeticException);
+            System.out.printf(
+               "Zero is an invalid denominator. Please try again.%n%n");
+         }
+      } while (continueLoop);
+   }
+}
+
+
+
+
+//Example 3
+
+                                                                // Fig. 11.5: UsingExceptions.java
+// try...catch...finally exception handling mechanism.
+
+public class UsingExceptions {
+   public static void main(String[] args) {
+      try {
+         throwException();
+      }
+      catch (Exception exception) { // exception thrown by throwException
+         System.err.println("Exception handled in main");
+      }
+
+      doesNotThrowException();
+   }
+
+   // demonstrate try...catch...finally
+   public static void throwException() throws Exception {
+      try { // throw an exception and immediately catch it
+         System.out.println("Method throwException");
+         throw new Exception(); // generate exception
+      }
+      catch (Exception exception) { // catch exception thrown in try
+         System.err.println(
+            "Exception handled in method throwException");
+         throw exception; // rethrow for further processing
+
+         // code here would not be reached; would cause compilation errors
+
+      }
+      finally { // executes regardless of what occurs in try...catch
+         System.err.println("Finally executed in throwException");
+      }
+
+      // code here would not be reached; would cause compilation errors
+   }
+
+   // demonstrate finally when no exception occurs
+   public static void doesNotThrowException() {
+      try { // try block does not throw an exception
+         System.out.println("Method doesNotThrowException");
+      }
+      catch (Exception exception) { // does not execute
+         System.err.println(exception);
+      }
+      finally { // executes regardless of what occurs in try...catch
+         System.err.println("Finally executed in doesNotThrowException");
+      }
+
+      System.out.println("End of method doesNotThrowException");
+   }
+}
+
+
+// EXAMPLE 4
+// Use of EXTENDS Keyword
+
+                                                                class A {
+                                                                   int a = 9;
+                                                                }
+                                                                class B extends A {
+                                                                   int b = 4;
+                                                                }
+                                                                public class Demo {
+                                                                   public static void main(String args[]) {
+                                                                      B obj = new B();
+                                                                      System.out.println("Value of a is: " + obj.a);
+                                                                      System.out.println("Value of b is: " + obj.b);
+                                                                   }
+                                                                }
+
+
+//Example 5
+//SuperClass and SubClass Demonstration of Inheritance
+class Vehicle {
+  protected String brand = "Ford";        // Vehicle attribute
+  public void honk() {                    // Vehicle method
+    System.out.println("Tuut, tuut!");
+  }
+}
+
+class Car extends Vehicle {
+  private String modelName = "Mustang";    // Car attribute
+  public static void main(String[] args) {
+
+    // Create a myCar object
+    Car myCar = new Car();
+
+    // Call the honk() method (from the Vehicle class) on the myCar object
+    myCar.honk();
+
+    // Display the value of the brand attribute (from the Vehicle class) and the value of the modelName from the Car class
+    System.out.println(myCar.brand + " " + myCar.modelName);
+  }
+}
+
+
+
+
+
+
+//Example 6
+
+// Example of print string using default toString() method in Object class.
+class Student{
+ int rollno;
+ String name;
+ String city;
+
+ Student(int rollno, String name, String city){
+ this.rollno=rollno;
+ this.name=name;
+ this.city=city;
+ }
+
+ public static void main(String args[]){
+   Student s1=new Student(101,"Raj","lucknow");
+   Student s2=new Student(102,"Vijay","ghaziabad");
+
+   System.out.println(s1);//compiler writes here s1.toString()
+   System.out.println(s2);//compiler writes here s2.toString()
+ }
+}
+
+
+
+
+
+//Example 7
+// Now let's see the real example of OVERIDDEN toString() method in Object class.
+
+class Student2{
+ int rollno;
+ String name;
+ String city;
+
+ Student2(int rollno, String name, String city){
+ this.rollno=rollno;
+ this.name=name;
+ this.city=city;
+ }
+
+ public String toString(){//overriding the toString() method
+  return rollno+" "+name+" "+city;
+ }
+ public static void main(String args[]){
+   Student2 s1=new Student2(101,"Raj","lucknow");
+   Student s2=new Student(102,"Vijay","ghaziabad");
+
+   System.out.println(s1);//compiler writes here s1.toString()
+   System.out.println(s2);//compiler writes here s2.toString()
+}
+}
+
+
+
+
+//Example 8a class CommissionEmployee extends Object
+                                                                // Fig. 9.4: CommissionEmployee.java
+// CommissionEmployee class represents an employee paid a
+// percentage of gross sales.
+public class CommissionEmployee extends Object {
+   private final String firstName;
+   private final String lastName;
+   private final String socialSecurityNumber;
+   private double grossSales; // gross weekly sales
+   private double commissionRate; // commission percentage
+
+   // five-argument constructor
+   public CommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate) {
+      // implicit call to Object's default constructor occurs here
+
+      // if grossSales is invalid throw exception
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      // if commissionRate is invalid throw exception
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.socialSecurityNumber = socialSecurityNumber;
+      this.grossSales = grossSales;
+      this.commissionRate = commissionRate;
+   }
+
+   // return first name
+   public String getFirstName() {return firstName;}
+
+   // return last name
+   public String getLastName() {return lastName;}
+
+   // return social security number
+   public String getSocialSecurityNumber() {return socialSecurityNumber;}
+
+   // set gross sales amount
+   public void setGrossSales(double grossSales) {
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      this.grossSales = grossSales;
+   }
+
+   // return gross sales amount
+   public double getGrossSales() {return grossSales;}
+
+   // set commission rate
+   public void setCommissionRate(double commissionRate) {
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.commissionRate = commissionRate;
+   }
+
+   // return commission rate
+   public double getCommissionRate() {return commissionRate;}
+
+   // calculate earnings
+   public double earnings() {return commissionRate * grossSales;}
+
+   // return String representation of CommissionEmployee object
+   @Override // indicates that this method overrides a superclass method
+   public String toString() {
+      return String.format("%s: %s %s%n%s: %s%n%s: %.2f%n%s: %.2f",
+         "commission employee", firstName, lastName,
+         "social security number", socialSecurityNumber,
+         "gross sales", grossSales,
+         "commission rate", commissionRate);
+   }
+}
+
+/*Example 8b CommissionEmployee class test program class by creating objects of CommissionEmployee */
+                                                                // Fig. 9.5: CommissionEmployeeTest.java
+// CommissionEmployee class test program.
+public class CommissionEmployeeTest {
+   public static void main(String[] args) {
+      // instantiate CommissionEmployee object
+      CommissionEmployee employee = new CommissionEmployee(
+         "Sue", "Jones", "222-22-2222", 10000, .06);
+
+      // get commission employee data
+      System.out.println("Employee information obtained by get methods:");
+      System.out.printf("%n%s %s%n", "First name is",
+         employee.getFirstName());
+      System.out.printf("%s %s%n", "Last name is",
+         employee.getLastName());
+      System.out.printf("%s %s%n", "Social security number is",
+         employee.getSocialSecurityNumber());
+      System.out.printf("%s %.2f%n", "Gross sales is",
+         employee.getGrossSales());
+      System.out.printf("%s %.2f%n", "Commission rate is",
+         employee.getCommissionRate());
+
+      employee.setGrossSales(5000);
+      employee.setCommissionRate(.1);
+
+      System.out.printf("%n%s:%n%n%s%n",
+         "Updated employee information obtained by toString", employee);
+   }
+}
+
+
+// Example 9. The use of SUPER keyword
+                                                                class Animal { // Superclass (parent)
+                                                                  public void animalSound() {
+                                                                    System.out.println("The animal makes a sound");
+                                                                  }
+                                                                }
+
+                                                                class Dog extends Animal { // Subclass (child)
+                                                                  public void animalSound() {
+                                                                    super.animalSound(); // Call the superclass method
+                                                                    System.out.println("The dog says: bow wow");
+                                                                  }
+                                                                }
+
+                                                                public class Main {
+                                                                  public static void main(String args[]) {
+                                                                    Animal myDog = new Dog(); // Create a Dog object
+                                                                    myDog.animalSound(); // Call the method on the Dog object
+                                                                  }
+                                                                }
+
+
+
+
+                                                                // Fig. 9.6: BasePlusCommissionEmployee.java
+// BasePlusCommissionEmployee class represents an employee who receives
+// a base salary in addition to commission.
+public class BasePlusCommissionEmployee {
+   private final String firstName;
+   private final String lastName;
+   private final String socialSecurityNumber;
+   private double grossSales; // gross weekly sales
+   private double commissionRate; // commission percentage
+   private double baseSalary; // base salary per week
+
+   // six-argument constructor
+   public BasePlusCommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate, double baseSalary) {
+      // implicit call to Object's default constructor occurs here
+
+      // if grossSales is invalid throw exception
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      // if commissionRate is invalid throw exception
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      // if baseSalary is invalid throw exception
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.socialSecurityNumber = socialSecurityNumber;
+      this.grossSales = grossSales;
+      this.commissionRate = commissionRate;
+      this.baseSalary = baseSalary;
+   }
+
+   // return first name
+   public String getFirstName() {return firstName;}
+
+   // return last name
+   public String getLastName() {return lastName;}
+
+   // return social security number
+   public String getSocialSecurityNumber() {return socialSecurityNumber;}
+
+   // set gross sales amount
+   public void setGrossSales(double grossSales) {
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      this.grossSales = grossSales;
+   }
+
+   // return gross sales amount
+   public double getGrossSales() {return grossSales;}
+
+   // set commission rate
+   public void setCommissionRate(double commissionRate) {
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.commissionRate = commissionRate;
+   }
+
+   // return commission rate
+   public double getCommissionRate() {return commissionRate;}
+
+   // set base salary
+   public void setBaseSalary(double baseSalary) {
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // return base salary
+   public double getBaseSalary() {return baseSalary;}
+
+   // calculate earnings
+   public double earnings() {
+      return baseSalary + (commissionRate * grossSales);
+   }
+
+   // return String representation of BasePlusCommissionEmployee
+   @Override
+   public String toString() {
+      return String.format(
+         "%s: %s %s%n%s: %s%n%s: %.2f%n%s: %.2f%n%s: %.2f",
+         "base-salaried commission employee", firstName, lastName,
+         "social security number", socialSecurityNumber,
+         "gross sales", grossSales, "commission rate", commissionRate,
+         "base salary", baseSalary);
+   }
+}
+
+
+
+
+                                                                // Fig. 9.7: BasePlusCommissionEmployeeTest.java
+// BasePlusCommissionEmployee test program.
+
+public class BasePlusCommissionEmployeeTest {
+   public static void main(String[] args) {
+      // instantiate BasePlusCommissionEmployee object
+      BasePlusCommissionEmployee employee =
+         new BasePlusCommissionEmployee(
+         "Bob", "Lewis", "333-33-3333", 5000, .04, 300);
+
+      // get base-salaried commission employee data
+      System.out.printf(
+         "Employee information obtained by get methods:%n");
+      System.out.printf("%s %s%n", "First name is",
+         employee.getFirstName());
+      System.out.printf("%s %s%n", "Last name is",
+         employee.getLastName());
+      System.out.printf("%s %s%n", "Social security number is",
+         employee.getSocialSecurityNumber());
+      System.out.printf("%s %.2f%n", "Gross sales is",
+         employee.getGrossSales());
+      System.out.printf("%s %.2f%n", "Commission rate is",
+         employee.getCommissionRate());
+      System.out.printf("%s %.2f%n", "Base salary is",
+         employee.getBaseSalary());
+
+      employee.setBaseSalary(1000);
+
+      System.out.printf("%n%s:%n%n%s%n",
+         "Updated employee information obtained by toString",
+          employee.toString());
+   }
+}
+
+
+
+
+                                                                // Fig. 9.8: BasePlusCommissionEmployee.java
+// private superclass members cannot be accessed in a subclass.
+public class BasePlusCommissionEmployee extends CommissionEmployee {
+   private double baseSalary; // base salary per week
+
+   // six-argument constructor
+   public BasePlusCommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate, double baseSalary) {
+      // explicit call to superclass CommissionEmployee constructor
+      super(firstName, lastName, socialSecurityNumber,
+         grossSales, commissionRate);
+
+      // if baseSalary is invalid throw exception
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // set base salary
+   public void setBaseSalary(double baseSalary) {
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // return base salary
+   public double getBaseSalary() {return baseSalary;}
+
+   // calculate earnings
+   @Override
+   public double earnings() {
+      // not allowed: commissionRate and grossSales private in superclass
+      return baseSalary + (commissionRate * grossSales);
+   }
+
+   // return String representation of BasePlusCommissionEmployee
+   @Override
+   public String toString() {
+      // not allowed: attempts to access private superclass members
+      return String.format(
+         "%s: %s %s%n%s: %s%n%s: %.2f%n%s: %.2f%n%s: %.2f",
+         "base-salaried commission employee", firstName, lastName,
+         "social security number", socialSecurityNumber,
+         "gross sales", grossSales, "commission rate", commissionRate,
+         "base salary", baseSalary);
+   }
+}
+
+
+
+
+
+                                                                // Fig. 9.4: CommissionEmployee.java
+// CommissionEmployee class represents an employee paid a
+// percentage of gross sales.
+public class CommissionEmployee extends Object {
+   private final String firstName;
+   private final String lastName;
+   private final String socialSecurityNumber;
+   private double grossSales; // gross weekly sales
+   private double commissionRate; // commission percentage
+
+   // five-argument constructor
+   public CommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate) {
+      // implicit call to Object's default constructor occurs here
+
+      // if grossSales is invalid throw exception
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      // if commissionRate is invalid throw exception
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.socialSecurityNumber = socialSecurityNumber;
+      this.grossSales = grossSales;
+      this.commissionRate = commissionRate;
+   }
+
+   // return first name
+   public String getFirstName() {return firstName;}
+
+   // return last name
+   public String getLastName() {return lastName;}
+
+   // return social security number
+   public String getSocialSecurityNumber() {return socialSecurityNumber;}
+
+   // set gross sales amount
+   public void setGrossSales(double grossSales) {
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      this.grossSales = grossSales;
+   }
+
+   // return gross sales amount
+   public double getGrossSales() {return grossSales;}
+
+   // set commission rate
+   public void setCommissionRate(double commissionRate) {
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.commissionRate = commissionRate;
+   }
+
+   // return commission rate
+   public double getCommissionRate() {return commissionRate;}
+
+   // calculate earnings
+   public double earnings() {return commissionRate * grossSales;}
+
+   // return String representation of CommissionEmployee object
+   @Override // indicates that this method overrides a superclass method
+   public String toString() {
+      return String.format("%s: %s %s%n%s: %s%n%s: %.2f%n%s: %.2f",
+         "commission employee", firstName, lastName,
+         "social security number", socialSecurityNumber,
+         "gross sales", grossSales,
+         "commission rate", commissionRate);
+   }
+}
+
+
+
+
+
+PROTECTED VARIAABLES
+                                                                // CommissionEmployee.java
+// CommissionEmployee class represents an employee paid a
+// percentage of gross sales.
+public class CommissionEmployee extends Object {
+   protected final String firstName;
+   protected final String lastName;
+   protected final String socialSecurityNumber;
+   protected double grossSales; // gross weekly sales
+   protected double commissionRate; // commission percentage
+
+   // five-argument constructor
+   public CommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate) {
+      // implicit call to Object's default constructor occurs here
+
+      // if grossSales is invalid throw exception
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      // if commissionRate is invalid throw exception
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.socialSecurityNumber = socialSecurityNumber;
+      this.grossSales = grossSales;
+      this.commissionRate = commissionRate;
+   }
+
+   // return first name
+   public String getFirstName() {return firstName;}
+
+   // return last name
+   public String getLastName() {return lastName;}
+
+   // return social security number
+   public String getSocialSecurityNumber() {return socialSecurityNumber;}
+
+   // set gross sales amount
+   public void setGrossSales(double grossSales) {
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      this.grossSales = grossSales;
+   }
+
+   // return gross sales amount
+   public double getGrossSales() {return grossSales;}
+
+   // set commission rate
+   public void setCommissionRate(double commissionRate) {
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.commissionRate = commissionRate;
+   }
+
+   // return commission rate
+   public double getCommissionRate() {return commissionRate;}
+
+   // calculate earnings
+   public double earnings() {return commissionRate * grossSales;}
+
+   // return String representation of CommissionEmployee object
+   @Override // indicates that this method overrides a superclass method
+   public String toString() {
+      return String.format("%s: %s %s%n%s: %s%n%s: %.2f%n%s: %.2f",
+         "commission employee", firstName, lastName,
+         "social security number", socialSecurityNumber,
+         "gross sales", grossSales,
+         "commission rate", commissionRate);
+   }
+}
+
+
+
+
+
+                                                                // Fig. 9.9: BasePlusCommissionEmployee.java
+// BasePlusCommissionEmployee inherits protected instance
+// variables from CommissionEmployee.
+
+public class BasePlusCommissionEmployee extends CommissionEmployee {
+   private double baseSalary; // base salary per week
+
+   // six-argument constructor
+   public BasePlusCommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate, double baseSalary) {
+      super(firstName, lastName, socialSecurityNumber,
+         grossSales, commissionRate);
+
+      // if baseSalary is invalid throw exception
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // set base salary
+   public void setBaseSalary(double baseSalary) {
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // return base salary
+   public double getBaseSalary() {return baseSalary;}
+
+   // calculate earnings
+   @Override // indicates that this method overrides a superclass method
+   public double earnings() {
+      return baseSalary + (commissionRate * grossSales);
+   }
+
+   // return String representation of BasePlusCommissionEmployee
+   @Override
+   public String toString() {
+      return String.format(
+         "%s: %s %s%n%s: %s%n%s: %.2f%n%s: %.2f%n%s: %.2f",
+         "base-salaried commission employee", firstName, lastName,
+         "social security number", socialSecurityNumber,
+         "gross sales", grossSales, "commission rate", commissionRate,
+         "base salary", baseSalary);
+   }
+}
+
+
+
+
+
+
+                                                                // Fig. 9.7: BasePlusCommissionEmployeeTest.java
+// BasePlusCommissionEmployee test program.
+
+public class BasePlusCommissionEmployeeTest {
+   public static void main(String[] args) {
+      // instantiate BasePlusCommissionEmployee object
+      BasePlusCommissionEmployee employee =
+         new BasePlusCommissionEmployee(
+         "Bob", "Lewis", "333-33-3333", 5000, .04, 300);
+
+      // get base-salaried commission employee data
+      System.out.println(
+         "Employee information obtained by get methods:%n");
+      System.out.printf("%s %s%n", "First name is",
+         employee.getFirstName());
+      System.out.printf("%s %s%n", "Last name is",
+         employee.getLastName());
+      System.out.printf("%s %s%n", "Social security number is",
+         employee.getSocialSecurityNumber());
+      System.out.printf("%s %.2f%n", "Gross sales is",
+         employee.getGrossSales());
+      System.out.printf("%s %.2f%n", "Commission rate is",
+         employee.getCommissionRate());
+      System.out.printf("%s %.2f%n", "Base salary is",
+         employee.getBaseSalary());
+
+      employee.setBaseSalary(1000);
+
+      System.out.printf("%n%s:%n%n%s%n",
+         "Updated employee information obtained by toString",
+          employee.toString());
+   }
+}
+
+
+
+//EXAMPLE FOR POLYMORPHISM TEST: The following set of three programs need to be in same package i.e. 9.11, 9.10 and 10.1.
+
+                                                                // Fig. 9.11: BasePlusCommissionEmployee.java
+// BasePlusCommissionEmployee class inherits from CommissionEmployee
+// and accesses the superclass�s private data via inherited
+// public methods.
+public class BasePlusCommissionEmployee extends CommissionEmployee {
+   private double baseSalary; // base salary per week
+
+   // six-argument constructor
+   public BasePlusCommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate, double baseSalary) {
+      super(firstName, lastName, socialSecurityNumber,
+         grossSales, commissionRate);
+
+      // if baseSalary is invalid throw exception
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // set base salary
+   public void setBaseSalary(double baseSalary) {
+      if (baseSalary < 0.0) {
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // return base salary
+   public double getBaseSalary() {return baseSalary;}
+
+   // calculate earnings
+   @Override
+   public double earnings() {return getBaseSalary() + super.earnings();}
+
+   // return String representation of BasePlusCommissionEmployee
+   @Override
+   public String toString() {
+      return String.format("%s %s%n%s: %.2f", "base-salaried",
+         super.toString(), "base salary", getBaseSalary());
+   }
+}
+
+
+
+                                                                // Fig. 9.10: CommissionEmployee.java
+// CommissionEmployee class uses methods to manipulate its
+// private instance variables.
+public class CommissionEmployee {
+   private final String firstName;
+   private final String lastName;
+   private final String socialSecurityNumber;
+   private double grossSales; // gross weekly sales
+   private double commissionRate; // commission percentage
+
+   // five-argument constructor
+   public CommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate) {
+      // implicit call to Object constructor occurs here
+
+      // if grossSales is invalid throw exception
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      // if commissionRate is invalid throw exception
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.socialSecurityNumber = socialSecurityNumber;
+      this.grossSales = grossSales;
+      this.commissionRate = commissionRate;
+   }
+
+   // return first name
+   public String getFirstName() {return firstName;}
+
+   // return last name
+   public String getLastName() {return lastName;}
+
+   // return social security number
+   public String getSocialSecurityNumber() {return socialSecurityNumber;}
+
+   // set gross sales amount
+   public void setGrossSales(double grossSales) {
+      if (grossSales < 0.0) {
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      this.grossSales = grossSales;
+   }
+
+   // return gross sales amount
+   public double getGrossSales() {return grossSales;}
+
+   // set commission rate
+   public void setCommissionRate(double commissionRate) {
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) {
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.commissionRate = commissionRate;
+   }
+
+   // return commission rate
+   public double getCommissionRate() {return commissionRate;}
+
+   // calculate earnings
+   public double earnings() {
+      return getCommissionRate() * getGrossSales();
+   }
+
+   // return String representation of CommissionEmployee object
+   @Override
+   public String toString() {
+      return String.format("%s: %s %s%n%s: %s%n%s: %.2f%n%s: %.2f",
+         "commission employee", getFirstName(), getLastName(),
+         "social security number", getSocialSecurityNumber(),
+         "gross sales", getGrossSales(),
+         "commission rate", getCommissionRate());
+   }
+}
+
+
+
+                                                                // Fig. 10.1: PolymorphismTest.java
+// Assigning superclass and subclass references to superclass and
+// subclass variables.
+
+public class PolymorphismTest {
+   public static void main(String[] args) {
+      // assign superclass reference to superclass variable
+      CommissionEmployee commissionEmployee = new CommissionEmployee(
+         "Sue", "Jones", "222-22-2222", 10000, .06);
+
+      // assign subclass reference to subclass variable
+      BasePlusCommissionEmployee basePlusCommissionEmployee =
+         new BasePlusCommissionEmployee(
+         "Bob", "Lewis", "333-33-3333", 5000, .04, 300);
+
+      // invoke toString on superclass object using superclass variable
+      System.out.printf("%s %s:%n%n%s%n%n",
+         "Call CommissionEmployee's toString with superclass reference ",
+         "to superclass object", commissionEmployee.toString());
+
+      // invoke toString on subclass object using subclass variable
+      System.out.printf("%s %s:%n%n%s%n%n",
+         "Call BasePlusCommissionEmployee's toString with subclass",
+         "reference to subclass object",
+         basePlusCommissionEmployee.toString());
+
+      // invoke toString on subclass object using superclass variable
+      CommissionEmployee commissionEmployee2 =
+         basePlusCommissionEmployee;
+      System.out.printf("%s %s:%n%n%s%n",
+         "Call BasePlusCommissionEmployee's toString with superclass",
+         "reference to subclass object", commissionEmployee2.toString());
+   }
+}
+
+
+
+
+
+
+
+                                                                // Fig. 10.8: BasePlusCommissionEmployee.java
+// BasePlusCommissionEmployee class extends CommissionEmployee.
+
+public class BasePlusCommissionEmployee extends CommissionEmployee {
+   private double baseSalary; // base salary per week
+
+   // constructor
+   public BasePlusCommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate, double baseSalary) {
+      super(firstName, lastName, socialSecurityNumber,
+         grossSales, commissionRate);
+
+      if (baseSalary < 0.0) { // validate baseSalary
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // set base salary
+   public void setBaseSalary(double baseSalary) {
+      if (baseSalary < 0.0) { // validate baseSalary
+         throw new IllegalArgumentException("Base salary must be >= 0.0");
+      }
+
+      this.baseSalary = baseSalary;
+   }
+
+   // return base salary
+   public double getBaseSalary() {return baseSalary;}
+
+   // calculate earnings; override method earnings in CommissionEmployee
+   @Override
+   public double earnings() {return getBaseSalary() + super.earnings();}
+
+   // return String representation of BasePlusCommissionEmployee object
+   @Override
+   public String toString() {
+      return String.format("%s %s; %s: $%,.2f",
+         "base-salaried", super.toString(),
+         "base salary", getBaseSalary());
+   }
+}
+
+
+
+
+
+
+
+                                                                // Fig. 10.7: CommissionEmployee.java
+// CommissionEmployee class extends Employee.
+
+public class CommissionEmployee extends Employee {
+   private double grossSales; // gross weekly sales
+   private double commissionRate; // commission percentage
+
+   // constructor
+   public CommissionEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double grossSales,
+      double commissionRate) {
+      super(firstName, lastName, socialSecurityNumber);
+
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) { // validate
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      if (grossSales < 0.0) { // validate
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      this.grossSales = grossSales;
+      this.commissionRate = commissionRate;
+   }
+
+   // set gross sales amount
+   public void setGrossSales(double grossSales) {
+      if (grossSales < 0.0) { // validate
+         throw new IllegalArgumentException("Gross sales must be >= 0.0");
+      }
+
+      this.grossSales = grossSales;
+   }
+
+   // return gross sales amount
+   public double getGrossSales() {return grossSales;}
+
+   // set commission rate
+   public void setCommissionRate(double commissionRate) {
+      if (commissionRate <= 0.0 || commissionRate >= 1.0) { // validate
+         throw new IllegalArgumentException(
+            "Commission rate must be > 0.0 and < 1.0");
+      }
+
+      this.commissionRate = commissionRate;
+   }
+
+   // return commission rate
+   public double getCommissionRate() {return commissionRate;}
+
+   // calculate earnings; override abstract method earnings in Employee
+   @Override
+   public double earnings() {
+      return getCommissionRate() * getGrossSales();
+   }
+
+   // return String representation of CommissionEmployee object
+   @Override
+   public String toString() {
+      return String.format("%s: %s%n%s: $%,.2f; %s: %.2f",
+         "commission employee", super.toString(),
+         "gross sales", getGrossSales(),
+         "commission rate", getCommissionRate());
+   }
+}
+
+
+
+                                                                // Fig. 10.4: Employee.java
+// Employee abstract superclass.
+
+public abstract class Employee {
+   private final String firstName;
+   private final String lastName;
+   private final String socialSecurityNumber;
+
+   // constructor
+   public Employee(String firstName, String lastName,
+      String socialSecurityNumber) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.socialSecurityNumber = socialSecurityNumber;
+   }
+
+   // return first name
+   public String getFirstName() {return firstName;}
+
+   // return last name
+   public String getLastName() {return lastName;}
+
+   // return social security number
+   public String getSocialSecurityNumber() {return socialSecurityNumber;}
+
+   // return String representation of Employee object
+   @Override
+   public String toString() {
+      return String.format("%s %s%nsocial security number: %s",
+         getFirstName(), getLastName(), getSocialSecurityNumber());
+   }
+
+   // abstract method must be overridden by concrete subclasses
+   public abstract double earnings(); // no implementation here
+}
+
+
+
+
+                                                                // Fig. 10.6: HourlyEmployee.java
+// HourlyEmployee class extends Employee.
+
+public class HourlyEmployee extends Employee {
+   private double wage; // wage per hour
+   private double hours; // hours worked for week
+
+   // constructor
+   public HourlyEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double wage, double hours) {
+      super(firstName, lastName, socialSecurityNumber);
+
+      if (wage < 0.0) { // validate wage
+         throw new IllegalArgumentException("Hourly wage must be >= 0.0");
+      }
+
+      if ((hours < 0.0) || (hours > 168.0)) { // validate hours
+         throw new IllegalArgumentException(
+            "Hours worked must be >= 0.0 and <= 168.0");
+      }
+
+      this.wage = wage;
+      this.hours = hours;
+   }
+
+   // set wage
+   public void setWage(double wage) {
+      if (wage < 0.0) { // validate wage
+         throw new IllegalArgumentException("Hourly wage must be >= 0.0");
+      }
+
+      this.wage = wage;
+   }
+
+   // return wage
+   public double getWage() {return wage;}
+
+   // set hours worked
+   public void setHours(double hours) {
+      if ((hours < 0.0) || (hours > 168.0)) { // validate hours
+         throw new IllegalArgumentException(
+            "Hours worked must be >= 0.0 and <= 168.0");
+      }
+
+      this.hours = hours;
+   }
+
+   // return hours worked
+   public double getHours() {return hours;}
+
+   // calculate earnings; override abstract method earnings in Employee
+   @Override
+   public double earnings() {
+      if (getHours() <= 40) { // no overtime
+         return getWage() * getHours();
+      }
+      else {
+         return 40 * getWage() + (getHours() - 40) * getWage() * 1.5;
+      }
+   }
+
+   // return String representation of HourlyEmployee object
+   @Override
+   public String toString() {
+      return String.format("hourly employee: %s%n%s: $%,.2f; %s: %,.2f",
+         super.toString(), "hourly wage", getWage(),
+         "hours worked", getHours());
+   }
+}
+
+
+
+
+
+
+
+
+                                                                // Fig. 10.9: PayrollSystemTest.java
+// Employee hierarchy test program.
+
+public class PayrollSystemTest {
+   public static void main(String[] args) {
+      // create subclass objects
+      SalariedEmployee salariedEmployee =
+         new SalariedEmployee("John", "Smith", "111-11-1111", 800.00);
+      HourlyEmployee hourlyEmployee =
+         new HourlyEmployee("Karen", "Price", "222-22-2222", 16.75, 40);
+      CommissionEmployee commissionEmployee =
+         new CommissionEmployee(
+         "Sue", "Jones", "333-33-3333", 10000, .06);
+      BasePlusCommissionEmployee basePlusCommissionEmployee =
+         new BasePlusCommissionEmployee(
+         "Bob", "Lewis", "444-44-4444", 5000, .04, 300);
+
+      System.out.println("Employees processed individually:");
+
+      System.out.printf("%n%s%n%s: $%,.2f%n%n",
+         salariedEmployee, "earned", salariedEmployee.earnings());
+      System.out.printf("%s%n%s: $%,.2f%n%n",
+         hourlyEmployee, "earned", hourlyEmployee.earnings());
+      System.out.printf("%s%n%s: $%,.2f%n%n",
+         commissionEmployee, "earned", commissionEmployee.earnings());
+      System.out.printf("%s%n%s: $%,.2f%n%n",
+         basePlusCommissionEmployee,
+         "earned", basePlusCommissionEmployee.earnings());
+
+      // create four-element Employee array
+      Employee[] employees = new Employee[4];
+
+      // initialize array with Employees
+      employees[0] = salariedEmployee;
+      employees[1] = hourlyEmployee;
+      employees[2] = commissionEmployee;
+      employees[3] = basePlusCommissionEmployee;
+
+      System.out.printf("Employees processed polymorphically:%n%n");
+
+      // generically process each element in array employees
+      for (Employee currentEmployee : employees) {
+         System.out.println(currentEmployee); // invokes toString
+
+         // determine whether element is a BasePlusCommissionEmployee
+         if (currentEmployee instanceof BasePlusCommissionEmployee) {
+            // downcast Employee reference to
+            // BasePlusCommissionEmployee reference
+            BasePlusCommissionEmployee employee =
+               (BasePlusCommissionEmployee) currentEmployee;
+
+            employee.setBaseSalary(1.10 * employee.getBaseSalary());
+
+            System.out.printf(
+               "new base salary with 10%% increase is: $%,.2f%n",
+               employee.getBaseSalary());
+         }
+
+         System.out.printf(
+            "earned $%,.2f%n%n", currentEmployee.earnings());
+      }
+
+      // get type name of each object in employees array
+      for (int j = 0; j < employees.length; j++) {
+         System.out.printf("Employee %d is a %s%n", j,
+            employees[j].getClass().getName());
+      }
+   }
+}
+
+
+
+
+                                                                // Fig. 10.5: SalariedEmployee.java
+// SalariedEmployee concrete class extends abstract class Employee.
+
+public class SalariedEmployee extends Employee {
+   private double weeklySalary;
+
+   // constructor
+   public SalariedEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double weeklySalary) {
+      super(firstName, lastName, socialSecurityNumber);
+
+      if (weeklySalary < 0.0) {
+         throw new IllegalArgumentException(
+            "Weekly salary must be >= 0.0");
+      }
+
+      this.weeklySalary = weeklySalary;
+   }
+
+   // set salary
+   public void setWeeklySalary(double weeklySalary) {
+      if (weeklySalary < 0.0) {
+         throw new IllegalArgumentException(
+            "Weekly salary must be >= 0.0");
+      }
+
+      this.weeklySalary = weeklySalary;
+   }
+
+   // return salary
+   public double getWeeklySalary() {return weeklySalary;}
+
+   // calculate earnings; override abstract method earnings in Employee
+   @Override
+   public double earnings() {return getWeeklySalary();}
+
+   // return String representation of SalariedEmployee object
+   @Override
+   public String toString() {
+      return String.format("salaried employee: %s%n%s: $%,.2f",
+         super.toString(), "weekly salary", getWeeklySalary());
+   }
+}
+
+
+
+
+                                                                // Fig. 10.13: Employee.java
+// Employee abstract superclass that implements Payable.
+
+public abstract class Employee implements Payable {
+   private final String firstName;
+   private final String lastName;
+   private final String socialSecurityNumber;
+
+   // constructor
+   public Employee(String firstName, String lastName,
+      String socialSecurityNumber) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.socialSecurityNumber = socialSecurityNumber;
+   }
+
+   // return first name
+   public String getFirstName() {return firstName;}
+
+   // return last name
+   public String getLastName() {return lastName;}
+
+   // return social security number
+   public String getSocialSecurityNumber() {return socialSecurityNumber;}
+
+   // return String representation of Employee object
+   @Override
+   public String toString() {
+      return String.format("%s %s%nsocial security number: %s",
+         getFirstName(), getLastName(), getSocialSecurityNumber());
+   }
+
+   // abstract method must be overridden by concrete subclasses
+   public abstract double earnings(); // no implementation here
+
+   // implementing getPaymentAmount here enables the entire Employee
+   // class hierarchy to be used in an app that processes Payables
+   public double getPaymentAmount() {return earnings();}
+}
+
+
+
+
+
+                                                                // Fig. 10.12: Invoice.java
+// Invoice class that implements Payable.
+
+public class Invoice implements Payable {
+   private final String partNumber;
+   private final String partDescription;
+   private final int quantity;
+   private final double pricePerItem;
+
+   // constructor
+   public Invoice(String partNumber, String partDescription, int quantity,
+      double pricePerItem) {
+      if (quantity < 0) { // validate quantity
+         throw new IllegalArgumentException("Quantity must be >= 0");
+      }
+
+      if (pricePerItem < 0.0) { // validate pricePerItem
+         throw new IllegalArgumentException(
+            "Price per item must be >= 0");
+      }
+
+      this.quantity = quantity;
+      this.partNumber = partNumber;
+      this.partDescription = partDescription;
+      this.pricePerItem = pricePerItem;
+   }
+
+   // get part number
+   public String getPartNumber() {return partNumber;}
+
+   // get description
+   public String getPartDescription() {return partDescription;}
+
+   // get quantity
+   public int getQuantity() {return quantity;}
+
+   // get price per item
+   public double getPricePerItem() {return pricePerItem;}
+
+   // return String representation of Invoice object
+   @Override
+   public String toString() {
+      return String.format("%s: %n%s: %s (%s) %n%s: %d %n%s: $%,.2f",
+         "invoice", "part number", getPartNumber(), getPartDescription(),
+         "quantity", getQuantity(), "price per item", getPricePerItem());
+   }
+
+   // method required to carry out contract with interface Payable
+   @Override
+   public double getPaymentAmount() {
+      return getQuantity() * getPricePerItem(); // calculate total cost
+   }
+}
+
+
+
+
+                                                                // Fig. 10.11: Payable.java
+// Payable interface declaration.
+
+public interface Payable {
+   public abstract double getPaymentAmount(); // no implementation
+}
+
+
+
+
+
+
+                                                                // Fig. 10.14: PayableInterfaceTest.java
+// Payable interface test program processing Invoices and
+// Employees polymorphically.
+public class PayableInterfaceTest {
+   public static void main(String[] args) {
+      // create four-element Payable array
+      Payable[] payableObjects = new Payable[] {
+         new Invoice("01234", "seat", 2, 375.00),
+         new Invoice("56789", "tire", 4, 79.95),
+         new SalariedEmployee("John", "Smith", "111-11-1111", 800.00),
+         new SalariedEmployee("Lisa", "Barnes", "888-88-8888", 1200.00)
+      };
+
+      System.out.println(
+         "Invoices and Employees processed polymorphically:");
+
+      // generically process each element in array payableObjects
+      for (Payable currentPayable : payableObjects) {
+         // output currentPayable and its appropriate payment amount
+         System.out.printf("%n%s %npayment due: $%,.2f%n",
+            currentPayable.toString(), // could invoke implicitly
+            currentPayable.getPaymentAmount());
+      }
+   }
+}
+
+
+
+                                                                // Fig. 10.5: SalariedEmployee.java
+// SalariedEmployee concrete class extends abstract class Employee.
+
+public class SalariedEmployee extends Employee {
+   private double weeklySalary;
+
+   // constructor
+   public SalariedEmployee(String firstName, String lastName,
+      String socialSecurityNumber, double weeklySalary) {
+      super(firstName, lastName, socialSecurityNumber);
+
+      if (weeklySalary < 0.0) {
+         throw new IllegalArgumentException(
+            "Weekly salary must be >= 0.0");
+      }
+
+      this.weeklySalary = weeklySalary;
+   }
+
+   // set salary
+   public void setWeeklySalary(double weeklySalary) {
+      if (weeklySalary < 0.0) {
+         throw new IllegalArgumentException(
+            "Weekly salary must be >= 0.0");
+      }
+
+      this.weeklySalary = weeklySalary;
+   }
+
+   // return salary
+   public double getWeeklySalary() {return weeklySalary;}
+
+   // calculate earnings; override abstract method earnings in Employee
+   @Override
+   public double earnings() {return getWeeklySalary();}
+
+   // return String representation of SalariedEmployee object
+   @Override
+   public String toString() {
+      return String.format("salaried employee: %s%n%s: $%,.2f",
+         super.toString(), "weekly salary", getWeeklySalary());
+   }
+}
+
+
+
+
+
+
+                                                                // Fig. 11.2: DivideByZeroNoExceptionHandling.java
+// Integer division without exception handling.
+import java.util.Scanner;
+
+public class DivideByZeroNoExceptionHandling {
+   // demonstrates throwing an exception when a divide-by-zero occurs
+   public static int quotient(int numerator, int denominator) {
+      return numerator / denominator; // possible division by zero
+   }
+
+   public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+
+      System.out.print("Please enter an integer numerator: ");
+      int numerator = scanner.nextInt();
+      System.out.print("Please enter an integer denominator: ");
+      int denominator = scanner.nextInt();
+
+      int result = quotient(numerator, denominator);
+      System.out.printf(
+         "%nResult: %d / %d = %d%n", numerator, denominator, result);
+   }
+}
+
+
+
+
+
+
+                                                                // Fig. 11.3: DivideByZeroWithExceptionHandling.java
+// Handling ArithmeticExceptions and InputMismatchExceptions.
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class DivideByZeroWithExceptionHandling
+{
+   // demonstrates throwing an exception when a divide-by-zero occurs
+   public static int quotient(int numerator, int denominator)
+      throws ArithmeticException {
+      return numerator / denominator; // possible division by zero
+   }
+
+   public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+      boolean continueLoop = true; // determines if more input is needed
+
+      do {
+         try { // read two numbers and calculate quotient
+            System.out.print("Please enter an integer numerator: ");
+            int numerator = scanner.nextInt();
+            System.out.print("Please enter an integer denominator: ");
+            int denominator = scanner.nextInt();
+
+            int result = quotient(numerator, denominator);
+            System.out.printf("%nResult: %d / %d = %d%n", numerator,
+               denominator, result);
+            continueLoop = false; // input successful; end looping
+         }
+         catch (InputMismatchException inputMismatchException) {
+            System.err.printf("%nException: %s%n",
+               inputMismatchException);
+            scanner.nextLine(); // discard input so user can try again
+            System.out.printf(
+               "You must enter integers. Please try again.%n%n");
+         }
+         catch (ArithmeticException arithmeticException) {
+            System.err.printf("%nException: %s%n", arithmeticException);
+            System.out.printf(
+               "Zero is an invalid denominator. Please try again.%n%n");
+         }
+      } while (continueLoop);
+   }
+}
+
+
+
+
+
+
+
+                                                                // Fig. 11.5: UsingExceptions.java
+// try...catch...finally exception handling mechanism.
+
+public class UsingExceptions {
+   public static void main(String[] args) {
+      try {
+         throwException();
+      }
+      catch (Exception exception) { // exception thrown by throwException
+         System.err.println("Exception handled in main");
+      }
+
+      doesNotThrowException();
+   }
+
+   // demonstrate try...catch...finally
+   public static void throwException() throws Exception {
+      try { // throw an exception and immediately catch it
+         System.out.println("Method throwException");
+         throw new Exception(); // generate exception
+      }
+      catch (Exception exception) { // catch exception thrown in try
+         System.err.println(
+            "Exception handled in method throwException");
+         throw exception; // rethrow for further processing
+
+         // code here would not be reached; would cause compilation errors
+
+      }
+      finally { // executes regardless of what occurs in try...catch
+         System.err.println("Finally executed in throwException");
+      }
+
+      // code here would not be reached; would cause compilation errors
+   }
+
+   // demonstrate finally when no exception occurs
+   public static void doesNotThrowException() {
+      try { // try block does not throw an exception
+         System.out.println("Method doesNotThrowException");
+      }
+      catch (Exception exception) { // does not execute
+         System.err.println(exception);
+      }
+      finally { // executes regardless of what occurs in try...catch
+         System.err.println("Finally executed in doesNotThrowException");
+      }
+
+      System.out.println("End of method doesNotThrowException");
+   }
+}
+
+
+
+
+
+
+                                                                // Fig. 11.6: UsingExceptions.java
+// Stack unwinding and obtaining data from an exception object.
+
+public class UsingExceptions {
+   public static void main(String[] args) {
+      try {
+         method1();
+      }
+      catch (Exception exception) { // catch exception thrown in method1
+         System.err.printf("%s%n%n", exception.getMessage());
+         exception.printStackTrace();
+
+         // obtain the stack-trace information
+         StackTraceElement[] traceElements = exception.getStackTrace();
+
+         System.out.printf("%nStack trace from getStackTrace:%n");
+         System.out.println("Class\t\tFile\t\t\tLine\tMethod");
+
+         // loop through traceElements to get exception description
+         for (StackTraceElement element : traceElements) {
+            System.out.printf("%s\t", element.getClassName());
+            System.out.printf("%s\t", element.getFileName());
+            System.out.printf("%s\t", element.getLineNumber());
+            System.out.printf("%s%n", element.getMethodName());
+         }
+      }
+   }
+
+   // call method2; throw exceptions back to main
+   public static void method1() throws Exception {
+      method2();
+   }
+
+   // call method3; throw exceptions back to method1
+   public static void method2() throws Exception {
+      method3();
+   }
+
+   // throw Exception back to method2
+   public static void method3() throws Exception {
+      throw new Exception("Exception thrown in method3");
+   }
+}
+
+
+
+
+
+
+                                                                // Fig. 11.7: UsingChainedExceptions.java
+// Chained exceptions.
+
+public class UsingChainedExceptions {
+   public static void main(String[] args) {
+      try {
+         method1();
+      }
+      catch (Exception exception) { // exceptions thrown from method1
+         exception.printStackTrace();
+      }
+   }
+
+   // call method2; throw exceptions back to main
+   public static void method1() throws Exception {
+      try {
+         method2();
+      }
+      catch (Exception exception) { // exception thrown from method2
+         throw new Exception("Exception thrown in method1", exception);
+      }
+   }
+
+   // call method3; throw exceptions back to method1
+   public static void method2() throws Exception {
+      try {
+         method3();
+      }
+      catch (Exception exception) { // exception thrown from method3
+         throw new Exception("Exception thrown in method2", exception);
+      }
+   }
+
+   // throw Exception back to method2
+   public static void method3() throws Exception {
+      throw new Exception("Exception thrown in method3");
+   }
+}
+
+
+
+
+                                                                // Fig. 11.8: AssertTest.java
+// Checking with assert that a value is within range
+import java.util.Scanner;
+
+public class AssertTest {
+   public static void main(String[] args) {
+      Scanner input = new Scanner(System.in);
+
+      System.out.print("Enter a number between 0 and 10: ");
+      int number = input.nextInt();
+
+      // assert that the value is >= 0 and <= 10
+      assert (number >= 0 && number <= 10) : "bad number: " + number;
+
+      System.out.printf("You entered %d%n", number);
+   }
+}

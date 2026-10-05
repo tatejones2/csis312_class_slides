@@ -1,0 +1,680 @@
+// EXAMPLE 1
+
+class Scope
+{
+    final static String txt = "This is a global variable of the Scope class";
+
+    public static void main ( String[] args )
+    {
+        String txt = "This is a local variable in the main method";
+        System.out.println( txt );
+        sub();
+
+        System.out.println( Scope.txt );
+    }
+    public static void sub( )
+
+    {
+        //String txt = "This is a local variable in the sub method";
+        System.out.println( txt );
+    }
+}
+
+
+
+
+
+
+
+
+// EXAMPLE 2
+// Class 1
+class Multi
+{
+    public static void main ( String[] args )
+    {
+        String msg = "This is a local variable in the Multi class";
+        System.out.println( msg );
+
+        System.out.println( Data.txt );
+
+        Data.greeting();
+
+        Draw.line();
+    }
+}
+
+// Class 2
+class Data
+{
+    public final static String txt = "This is a global variable of the Data class";
+    public static void greeting()
+    {
+        System.out.print( "This is a global method " );
+        System.out.println( "of the Data class" );
+    }
+}
+
+
+// Class 3
+class Draw
+{
+    static void line()
+    {
+        System.out.println("___________________________________________");
+    }
+}
+
+
+
+
+
+
+
+
+
+// Example 3
+class Exceptions
+{
+    public static void main( String[] args )
+    {
+        try
+        {
+            int num = Integer.parseInt(args[0]);
+            System.out.println( "You entered: "+num );
+        }
+        catch(ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println( "Integer argument required.");
+        }
+        catch( NumberFormatException e )
+        {
+            System.out.println( "Argument is wrong format.");
+        }
+        finally
+        {
+            System.out.println( "Program ends." );
+        }
+    }
+}
+
+
+
+
+// Example 4
+// THIS IS THE SUPER CLASS AND THE SUB CLASS IS AS BELOW
+class SuperClass
+{
+    public static void hello()
+    {
+        System.out.println( "Hello from the Super Class" );
+    }
+
+    public static void echo(String arg )
+    {
+        try
+        {
+
+            System.out.println( "You entered: " + arg );
+        }
+        catch(Exception e)
+        {
+            System.out.println( "Argument required" );
+        }
+    }
+}
+
+
+// THIS IS THE SUB CLASS AND THE SUPER CLASS IS AS ABOVE
+
+class SubClass extends SuperClass
+{
+    public static void main(String[] args)
+    {
+        hello();
+        SuperClass.hello();
+
+        // Commented-out the line below...
+        // echo( args[0]);
+
+        try
+        {
+            echo( args[0]);
+        }
+        catch(Exception e)
+        {
+            System.out.println( "Argument required" );
+        }
+
+    }
+
+    public static void hello()
+    {
+        System.out.println( "Hello from the Sub Class" );
+    }
+}
+
+
+
+
+
+// Example 5
+// Class Objects
+class Car
+{
+    public final static String color = "Red" ;
+    public final static String bodyType = "Coupe" ;
+
+    public static String accelerate()
+    {
+        String motion = "Accelerating..." ;
+        return motion;
+    }
+}
+
+class FirstObject
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Paint is " + Car.color ) ;
+        System.out.println( "Style is " + Car.bodyType ) ;
+        System.out.println( Car.accelerate() ) ;
+    }
+}
+
+
+
+
+
+//Example 6
+
+class Car
+{
+    public final static String color = "Red" ;
+    public final static String bodyType = "Coupe" ;
+
+    public static String accelerate()
+    {
+        String motion = "Accelerating..." ;
+        return motion;
+    }
+}
+
+
+
+class FirstInstance
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Car paint is " + Car.color ) ;
+        System.out.println( "Car style is " + Car.bodyType ) ;
+        System.out.println( Car.accelerate() ) ;
+
+        Car Porsche = new Car() ;
+
+        System.out.println( "Porsche paint is " + Porsche.color ) ;
+        System.out.println( "Porsche style is " + Porsche.bodyType ) ;
+        System.out.println( Porsche.accelerate() ) ;
+    }
+}
+
+
+
+
+
+// Example 7A – Throw Statement Example 1A.
+/* this first version of the program will NOT compile because of LACK of exception handling statement.*/
+
+import java.io.*;
+
+public class TestExcept {
+
+    public static void main(String[] args) {
+        FileReader file = new FileReader("import2.txt");
+        BufferedReader fileInput = new BufferedReader(file);
+
+        // Print first 3 lines of file "C:\test\a.txt"
+        for (int counter = 0; counter < 3; counter++)
+            System.out.println(fileInput.readLine());
+
+        fileInput.close();
+    }
+
+}
+
+// Example 7B – Throw Statement Example 1B.
+/* this second version of the program WILL compile because of the presence of exception handling statement THROW STATEMENT. */
+import java.io.*;
+
+public class TestExcept2 {
+
+    public static void main(String[] args) throws IOException {
+        FileReader file = new FileReader("import2.txt");
+        BufferedReader fileInput = new BufferedReader(file);
+
+        // Print first 3 lines of file "C:\test\a.txt"
+        for (int counter = 0; counter < 3; counter++)
+            System.out.println(fileInput.readLine());
+
+        fileInput.close();
+    }
+
+}
+
+
+
+
+//Example 8 – Throw Statement Example 2
+/* In this program we are checking the Student age
+ * if the student age<12 and weight <40 then our program
+ * should return that the student is not eligible for registration.
+ */
+public class ThrowExample {
+   static void checkEligibilty(int stuage, int stuweight){
+      if(stuage<12 && stuweight<40) {
+         throw new ArithmeticException("Student is not eligible for registration");
+      }
+      else {
+         System.out.println("Student Entry is Valid!!");
+      }
+   }
+
+   public static void main(String args[]){
+     System.out.println("Welcome to the Registration process!!");
+     checkEligibilty(10, 39);
+     System.out.println("Have a nice day..");
+ }
+}
+
+
+
+//Example 9A
+// Fig. 8.1: Time1.java
+// Time1 class declaration maintains the time in 24-hour format.
+
+public class Time1 {
+   private int hour; // 0 - 23
+   private int minute; // 0 - 59
+   private int second; // 0 - 59
+
+   // set a new time value using universal time; throw an
+   // exception if the hour, minute or second is invalid
+   public void setTime(int hour, int minute, int second) {
+      // validate hour, minute and second
+      if (hour < 0 || hour >= 24 || minute < 0 || minute >= 60 ||
+         second < 0 || second >= 60) {
+         throw new IllegalArgumentException(
+            "hour, minute and/or second was out of range");
+      }
+
+      this.hour = hour;
+      this.minute = minute;
+      this.second = second;
+   }
+
+   // convert to String in universal-time format (HH:MM:SS)
+   public String toUniversalString() {
+      return String.format("%02d:%02d:%02d", hour, minute, second);
+   }
+
+   // convert to String in standard-time format (H:MM:SS AM or PM)
+   public String toString() {
+      return String.format("%d:%02d:%02d %s",
+         ((hour == 0 || hour == 12) ? 12 : hour % 12),
+         minute, second, (hour < 12 ? "AM" : "PM"));
+   }
+}
+
+
+
+// Fig. 8.2: Time1Test.java
+// Time1 object used in an app.
+
+public class Time1Test {
+   public static void main(String[] args) {
+      // create and initialize a Time1 object
+      Time1 time = new Time1(); // invokes Time1 constructor
+
+      // output string representations of the time
+      displayTime("After time object is created", time);
+      System.out.println();
+
+      // change time and output updated time
+      time.setTime(13, 27, 6);
+      displayTime("After calling setTime", time);
+      System.out.println();
+
+      // attempt to set time with invalid values
+      try {
+         time.setTime(99, 99, 99); // all values out of range
+      }
+      catch (IllegalArgumentException e) {
+         System.out.printf("Exception: %s%n%n", e.getMessage());
+      }
+
+      // display time after attempt to set invalid values
+      displayTime("After calling setTime with invalid values", time);
+   }
+
+   // displays a Time1 object in 24-hour and 12-hour formats
+   private static void displayTime(String header, Time1 t) {
+      System.out.printf("%s%nUniversal time: %s%nStandard time: %s%n",
+         header, t.toUniversalString(), t.toString());
+   }
+}
+
+
+
+                                                                // Fig. 8.3: MemberAccessTest.java
+// Private members of class Time1 are not accessible.
+public class MemberAccessTest {
+   public static void main(String[] args) {
+      Time1 time = new Time1(); // create and initialize Time1 object
+
+      time.hour = 7; // error: hour has private access in Time1
+      time.minute = 15; // error: minute has private access in Time1
+      time.second = 30; // error: second has private access in Time1
+   }
+}
+
+
+
+
+
+
+// Example 10a : Constructor Demonstration
+// Account class with a constructor that initializes the name.
+//Fig. 7.5: Account
+public class Account {
+   private String name; // instance variable
+
+   // constructor initializes name with parameter name
+   public Account(String name) { // constructor name is class name
+      this.name = name;
+   }
+
+   // method to set the name
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   // method to retrieve the name
+   public String getName() {
+      return name;
+   }
+}
+
+
+
+
+// Example 10b : Constructor Demonstration
+// Fig. 7.6: AccountTest.java
+// Using the Account constructor to initialize the name instance
+// variable at the time each Account object is created.
+
+public class AccountTest {
+   public static void main(String[] args) {
+      // create two Account objects
+      Account account1 = new Account("Jane Green");
+      Account account2 = new Account("John Blue");
+
+      // display initial value of name for each Account
+      System.out.printf("account1 name is: %s%n", account1.getName());
+      System.out.printf("account2 name is: %s%n", account2.getName());
+   }
+}
+
+
+
+
+
+
+
+//EXAMPLE 11 a, Time 2 Class  for demonstrating constructor overloading i.e multiple constructors
+
+                                                                // Fig. 8.5: Time2.java
+// Time2 class declaration with overloaded constructors.
+
+public class Time2 {
+   private int hour; // 0 - 23
+   private int minute; // 0 - 59
+   private int second; // 0 - 59
+
+   // Time2 no-argument constructor:
+   // initializes each instance variable to zero
+   public Time2() {
+      this(0, 0, 0); // invoke constructor with three arguments
+   }
+
+   // Time2 constructor: hour supplied, minute and second defaulted to 0
+   public Time2(int hour) {
+      this(hour, 0, 0); // invoke constructor with three arguments
+   }
+
+   // Time2 constructor: hour and minute supplied, second defaulted to 0
+   public Time2(int hour, int minute) {
+      this(hour, minute, 0); // invoke constructor with three arguments
+   }
+
+   // Time2 constructor: hour, minute and second supplied
+   public Time2(int hour, int minute, int second) {
+      if (hour < 0 || hour >= 24) {
+         throw new IllegalArgumentException("hour must be 0-23");
+      }
+
+      if (minute < 0 || minute >= 60) {
+         throw new IllegalArgumentException("minute must be 0-59");
+      }
+
+      if (second < 0 || second >= 60) {
+         throw new IllegalArgumentException("second must be 0-59");
+      }
+
+      this.hour = hour;
+      this.minute = minute;
+      this.second = second;
+   }
+
+   // Time2 constructor: another Time2 object supplied
+   public Time2(Time2 time) {
+      // invoke constructor with three arguments
+      this(time.hour, time.minute, time.second);
+   }
+
+   // Set Methods
+   // set a new time value using universal time;
+   // validate the data
+   public void setTime(int hour, int minute, int second) {
+      if (hour < 0 || hour >= 24) {
+         throw new IllegalArgumentException("hour must be 0-23");
+      }
+
+      if (minute < 0 || minute >= 60) {
+         throw new IllegalArgumentException("minute must be 0-59");
+      }
+
+      if (second < 0 || second >= 60) {
+         throw new IllegalArgumentException("second must be 0-59");
+      }
+
+      this.hour = hour;
+      this.minute = minute;
+      this.second = second;
+   }
+
+   // validate and set hour
+   public void setHour(int hour) {
+      if (hour < 0 || hour >= 24) {
+         throw new IllegalArgumentException("hour must be 0-23");
+      }
+
+      this.hour = hour;
+   }
+
+   // validate and set minute
+   public void setMinute(int minute) {
+      if (minute < 0 || minute >= 60) {
+         throw new IllegalArgumentException("minute must be 0-59");
+      }
+
+      this.minute = minute;
+   }
+
+   // validate and set second
+   public void setSecond(int second) {
+      if (second < 0 || second >= 60) {
+         throw new IllegalArgumentException("second must be 0-59");
+      }
+
+      this.second = second;
+   }
+
+   // Get Methods
+   // get hour value
+   public int getHour() {return hour;}
+
+   // get minute value
+   public int getMinute() {return minute;}
+
+   // get second value
+   public int getSecond() {return second;}
+
+   // convert to String in universal-time format (HH:MM:SS)
+   public String toUniversalString() {
+      return String.format(
+         "%02d:%02d:%02d", getHour(), getMinute(), getSecond());
+   }
+
+   // convert to String in standard-time format (H:MM:SS AM or PM)
+   public String toString() {
+      return String.format("%d:%02d:%02d %s",
+         ((getHour() == 0 || getHour() == 12) ? 12 : getHour() % 12),
+         getMinute(), getSecond(), (getHour() < 12 ? "AM" : "PM"));
+   }
+}
+
+
+//EXAMPLE 11 b,  Time2Test Class
+                                                                // Fig. 8.6: Time2Test.java
+// Overloaded constructors used to initialize Time2 objects.
+
+public class Time2Test {
+   public static void main(String[] args) {
+      Time2 t1 = new Time2(); // 00:00:00
+      Time2 t2 = new Time2(2); // 02:00:00
+      Time2 t3 = new Time2(21, 34); // 21:34:00
+      Time2 t4 = new Time2(12, 25, 42); // 12:25:42
+      Time2 t5 = new Time2(t4); // 12:25:42
+
+      System.out.println("Constructed with:");
+      displayTime("t1: all default arguments", t1);
+      displayTime("t2: hour specified; default minute and second", t2);
+      displayTime("t3: hour and minute specified; default second", t3);
+      displayTime("t4: hour, minute and second specified", t4);
+      displayTime("t5: Time2 object t4 specified", t5);
+
+      // attempt to initialize t6 with invalid values
+      try {
+         Time2 t6 = new Time2(27, 74, 99); // invalid values
+      }
+      catch (IllegalArgumentException e) {
+         System.out.printf("%nException while initializing t6: %s%n",
+            e.getMessage());
+      }
+   }
+
+   // displays a Time2 object in 24-hour and 12-hour formats
+   private static void displayTime(String header, Time2 t) {
+      System.out.printf("%s%n   %s%n   %s%n",
+         header, t.toUniversalString(), t.toString());
+   }
+}
+
+
+
+
+
+                                                                // Fig. 8.7: Date.java
+// Date class declaration.
+
+public class Date {
+   private int month; // 1-12
+   private int day; // 1-31 based on month
+   private int year; // any year
+
+   private static final int[] daysPerMonth =
+      {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+   // constructor: confirm proper value for month and day given the year
+   public Date(int month, int day, int year) {
+      // check if month in range
+      if (month <= 0 || month > 12) {
+         throw new IllegalArgumentException(
+            "month (" + month + ") must be 1-12");
+      }
+
+      // check if day in range for month
+      if (day <= 0 ||
+         (day > daysPerMonth[month] && !(month == 2 && day == 29))) {
+         throw new IllegalArgumentException("day (" + day +
+            ") out-of-range for the specified month and year");
+      }
+
+      // check for leap year if month is 2 and day is 29
+      if (month == 2 && day == 29 && !(year % 400 == 0 ||
+           (year % 4 == 0 && year % 100 != 0))) {
+         throw new IllegalArgumentException("day (" + day +
+            ") out-of-range for the specified month and year");
+      }
+
+      this.month = month;
+      this.day = day;
+      this.year = year;
+
+      System.out.printf("Date object constructor for date %s%n", this);
+   }
+
+   // return a String of the form month/day/year
+   public String toString() {
+      return String.format("%d/%d/%d", month, day, year);
+   }
+}
+
+
+
+                                                                // Fig. 8.8: Employee.java
+// Employee class with references to other objects.
+
+public class Employee {
+   private String firstName;
+   private String lastName;
+   private Date birthDate;
+   private Date hireDate;
+
+   // constructor to initialize name, birth date and hire date
+   public Employee(String firstName, String lastName, Date birthDate,
+      Date hireDate) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.birthDate = birthDate;
+      this.hireDate = hireDate;
+   }
+
+   // convert Employee to String format
+   public String toString() {
+      return String.format("%s, %s  Hired: %s  Birthday: %s",
+         lastName, firstName, hireDate, birthDate);
+   }
+}
+                                                                // Fig. 8.9: EmployeeTest.java
+// Composition demonstration.
+
+public class EmployeeTest {
+   public static void main(String[] args) {
+      Date birth = new Date(7, 24, 1949);
+      Date hire = new Date(3, 12, 1988);
+      Employee employee = new Employee("Bob", "Blue", birth, hire);
+
+      System.out.println(employee);
+   }
+}
