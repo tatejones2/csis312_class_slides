@@ -9,6 +9,8 @@ The map describes material supplied as of October 5, 2026, not a complete syllab
 
 ## Topic map
 
+[Chapter Markdown references](../chapters/README.md) combine each chapter's overview, source links and available slide/manual text.
+
 | Material | Concepts and examples | Slides |
 | --- | --- | ---: |
 | JHTP11_08 | Classes and objects; scope; access control; constructors and `this`; composition; `static`, `final`, enums, packages and `BigDecimal`; preliminary exception examples | 179 |

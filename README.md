@@ -6,6 +6,7 @@ JavaFX is expected for most assignments. The supplied GUI material covers Scene 
 
 ## Start here
 
+- [Markdown references for Chapters 8–15](chapters/README.md)
 - [Course topic map and assignment context](reference/COURSE_GUIDE.md)
 - [Instructions for future coding-assistant sessions](AGENTS.md)
 - [Searchable slide, example and manual text](reference/extracted/)
@@ -32,3 +33,5 @@ Original documents are preserved unchanged. PowerPoint text is indexed by slide;
 Regenerate Office text with `python3 tools/extract_course.py`. On macOS, build the PDF OCR helper with `swiftc tools/ocr.swift -o /tmp/csis312-ocr`, then run `/tmp/csis312-ocr "input.pdf" "output.txt"`.
 
 Tate confirmed on October 5, 2026 that the professor permits AI use despite the older wording in the slides. See the course guide for the updated context.
+
+Regenerate the chapter Markdown files with `python3 tools/build_chapter_notes.py` after updating the extracts.

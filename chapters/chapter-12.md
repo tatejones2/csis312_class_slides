@@ -1,0 +1,1970 @@
+# Chapter 12: JavaFX Graphical User Interfaces: Part 1
+
+[All chapters](README.md) · [Course guide](../reference/COURSE_GUIDE.md)
+
+## Main concepts
+
+- Stages, scenes, scene graphs and JavaFX controls.
+- Scene Builder, FXML, controller classes and event handling.
+- `VBox` and `GridPane`; labels, images, text fields, sliders and buttons.
+- Welcome GUI and Tip Calculator examples.
+
+## Sources
+
+- [JHTP11_12 UPDATED-212 -2022- Givingthanks (1).pptx](../JHTP11_12%20UPDATED-212%20-2022-%20Givingthanks%20%281%29.pptx)
+- [Searchable text: JHTP11_12 UPDATED-212 -2022- Givingthanks (1).md](../reference/extracted/JHTP11_12%20UPDATED-212%20-2022-%20Givingthanks%20%281%29.md)
+- [Chapter 12 Java FX Manual Excerpt SCANNED COPY- 2021-FINAL.pdf](../Chapter%2012%20Java%20FX%20Manual%20Excerpt%20SCANNED%20COPY-%202021-FINAL.pdf)
+- [Searchable text: Chapter 12 Java FX Manual Excerpt SCANNED COPY- 2021-FINAL.txt](../reference/extracted/Chapter%2012%20Java%20FX%20Manual%20Excerpt%20SCANNED%20COPY-%202021-FINAL.txt)
+
+## Reading these notes
+
+The material below preserves the available extracted text. Slide and PDF page numbers
+refer to the supplied files, not necessarily the printed textbook page numbers.
+Images, diagrams and image-based code require the original documents. OCR can
+misread identifiers and punctuation; extracted examples are not verified runnable code.
+
+## Slide text: JHTP11_12 UPDATED-212 -2022- Givingthanks (1).md
+
+### Slide 1
+
+LET US PRAY!
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+#### Speaker notes
+
+
+2
+
+### Slide 2
+
+Chapter 12JavaFX Graphical User Interfaces: Part 1
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+#### Speaker notes
+
+Organizational Network Analysis
+
+
+5
+
+### Slide 3
+
+ Giving Thanks to God (Psalm 100)
+1.Make a joyful noise unto the Lord, all ye lands.
+2 Serve the Lord with gladness: come before his presence with singing.
+3 Know ye that the Lord he is God: it is he that hath made us, and not we ourselves; we are his people, and the sheep of his pasture.
+4 Enter into his gates with thanksgiving, and into his courts with praise: be thankful unto him, and bless his name.
+5 For the Lord is good; his mercy is everlasting; and his truth endureth to all generations.
+
+3
+
+#### Speaker notes
+
+https://www.youtube.com/watch?v=Z1W4E2d4Yxo
+30
+
+### Slide 4
+
+ Giving Thanks to God: Paul and Silas in Prison (Acts 16:16-40))
+4
+
+### Slide 5
+
+EXAMPLES OF JESUS GIVING THNAKS
+41 So they took away the stone. Then Jesus looked up and said:
+ “Father, I thank you that you have heard me. 42 I knew that you always hear me, but I said this for the benefit of the people standing here, that they may believe that you sent me.”
+
+43 When he had said this, Jesus called in a loud voice, “Lazarus, come out!” 44
+
+
+John 11:38-44
+1 Corinthians 11:24and when He had given thanks, He broke it and said, "This is My body, which is for you; do this in remembrance of Me."
+Luke 22:17After taking the cup, He gave thanks and said, "Take this and divide it among yourselves.
+
+### Slide 6
+
+ Giving Thanks to God (Revelation 4:11) Thou Art Worthy Oh Lord!
+6
+11 Thou art worthy, O Lord, to receive glory and honour and power: for thou hast created all things, and for thy pleasure they are and were created.
+
+Other psalms for Thanksgiving: Psalm 34, Psalm  111, Psalm 95,  Psalm 44: 4-8, Psalm 92,  Rev 4, etc.
+
+### Slide 7
+
+ Giving Thanks to God (Revelation 4:11) Thou Art Worthy Oh Lord!
+7
+
+### Slide 8
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 9
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 10
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 11
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 12
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 13
+
+This is an in-class Exam
+The Final Exam
+Covers the Chapters 1 - 11 from the textbook.
+Contains 100 multiple-choice and true/false questions.
+Is limited to 2 hours].
+Is worth 150 points.
+
+This exam is closed book and closed note. You have two hours to complete it at which time the exam will but submitted automatically. It consists of 100 true/false and multiple choice questions and is worth 150 points.
+
+This is an in-class exam taken on the day of the final according to the final exam schedule.
+
+### Slide 14
+
+Course Evaluation
+© 2017 Cengage Learning. All Rights Reserved. May not be copied, scanned, or duplicated, in whole or in part, except for use as permitted in a license distributed with a certain product or service or otherwise on a password-protected website for classroom use.
+Time to complete the course evaluation
+
+### Slide 15
+
+JavaFX is easier to use—it provides one API for client functionality, including GUI, graphics and multimedia (images, animation, audio and video).
+Swing is only for GUIs, so you need to use other APIs for graphics and multimedia apps.
+With Swing, many IDEs provided GUI design tools for dragging and dropping components onto a layout; however, each IDE produced different code.
+Though Swing components could be customized, JavaFX gives you complete control over a JavaFX GUI’s look-and-feel.
+JavaFX is easier to use
+
+### Slide 16
+
+Most Java textbooks that introduce GUI programming provide hand-coded GUIs—that is, the authors build the GUIs from scratch in Java code, rather than using a visual GUI design tool.
+This is due to the fractured Java IDE market—there are many Java IDEs, so authors can’t depend on any one IDE being used, and each generates different code.
+JavaFX is organized differently.
+The Scene Builder tool is a standalone JavaFX GUI visual layout tool that can also be used with various IDEs, including the most popular ones—Eclipse, IntelliJ IDEA and NetBeans.
+You can download Scene Builder at:
+http://gluonhq.com/labs/scene-builder/
+JavaFX Scene Builder
+
+### Slide 17
+
+JavaFX Scene Builder enables you to create GUIs by dragging and dropping GUI components from Scene Builder’s library onto a design area,
+Then modifying and styling the GUI—all without writing any code.
+JavaFX Scene Builder’s live editing and preview features allow you to view your GUI as you create and modify it, without compiling and running the app.
+You can use Cascading Style Sheets (CSS) to change the entire look-and-feel of your GUI—a concept sometimes called skinning.
+JavaFX Scene Builder
+
+### Slide 18
+
+As you create and modify a GUI, JavaFX Scene Builder generates FXML (FX Markup Language)
+—an XML vocabulary for defining and arranging JavaFX GUI controls without writing any Java code.
+XML (eXtensible Markup Language) is a widely used language for describing things—it’s readable both by computers and by humans.
+In JavaFX, FXML concisely describes GUI, graphics and multimedia elements.
+You do not need to know FXML or XML to develop java GUI.
+JavaFX Scene Builder hides the FXML details from you, so you can focus on defining what the GUI should contain without specifying how to generate it—this is an example of declarative programming.
+FXML (FX Markup Language)
+
+### Slide 19
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 20
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 21
+
+
+
+### Slide 22
+
+Swing has a large following, has a proven track record and a wide availability of 3rd party support.
+The future is a difficult thing to predict and is always fluent.
+There are still some companies using AWT (Abstract Window Toolkit).
+Majority of existing GUI java codebases are Swing and likely will stay that way until the codebase rots and nobody maintains it anymore.
+
+Is Swing Still in Use Today?
+
+### Slide 23
+
+Majority of new GUI java codebases are using JavaFX, which is the Swing replacement in Java8 and is part of the standard java library now.
+FXML can replace 3,000 lines of extended JFrame class code for a Swing GUI, with 50 lines of FXML.
+Swing is still used heavily, and will continue to be for a long while
+Swing was the only choice for Java for a loooong time.
+JavaFX, however, is refreshingly nice, and very-much-so worth learning.
+Is Swing Still in Use Today? Cont,
+
+### Slide 24
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+import javax.swing.*;class TextFields extends JFrame {   JPanel pnl = new JPanel();   JTextField txt1 = new JTextField( 38 ) ;   JTextField txt2 = new JTextField( "Default Text", 38 ) ;      JTextArea txtArea = new JTextArea( 5, 37 ) ;      JScrollPane pane = new JScrollPane( txtArea ) ;   public TextFields()   {      super( "Swing Window" );      setSize( 500,200 );      setDefaultCloseOperation( EXIT_ON_CLOSE );      add(pnl);      txtArea.setLineWrap( true ) ;      txtArea.setWrapStyleWord( true ) ;      pane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);            pnl.add( txt1 ) ;      pnl.add( txt2 ) ;      pnl.add( pane ) ;      setVisible( true );   }   public static void main ( String[] args )   {      TextFields gui = new TextFields();   } }
+Examples of Swing Coding
+import javax.swing.* ;import java.awt.*;class Layout extends JFrame{   Container contentPane = getContentPane();   JPanel pnl = new JPanel();   JPanel grid = new JPanel(new GridLayout(2,2));   public Layout()   {      super( "Swing Window" );      setSize( 500,200 );      setDefaultCloseOperation( EXIT_ON_CLOSE );               pnl.add(new JButton("Yes") );           pnl.add(new JButton("No") );      pnl.add(new JButton("Cancel") );           grid.add(new JButton("1"));           grid.add(new JButton("2"));           grid.add(new JButton("3"));           grid.add(new JButton("4"));       contentPane.add("North", pnl );           contentPane.add("Center", grid );           contentPane.add("West",new JButton("West"));       setVisible( true );   }      public static void main( String[] args )    {      Layout gui = new Layout() ;   }  }
+import javax.swing.*;class Window extends JFrame {   JPanel pnl = new JPanel();      public Window()   {      super("Swing Window");      setSize( 500,200 );      setDefaultCloseOperation( EXIT_ON_CLOSE );      add(pnl);      setVisible( true );   }   public static void main ( String[] args )   {      Window gui = new Window();   }
+
+### Slide 25
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+Examples of Swing Coding
+import javax.swing.*;class Radios extends JFrame {   JPanel pnl = new JPanel();      JRadioButton rad1 = new JRadioButton( "Red", true ) ;   JRadioButton rad2 = new JRadioButton( "Ros�" ) ;   JRadioButton rad3 = new JRadioButton( "White" ) ;   ButtonGroup wines = new ButtonGroup() ;       public Radios()   {      super( "Swing Window" );      setSize( 500,200 );      setDefaultCloseOperation( EXIT_ON_CLOSE );      add(pnl);      wines.add( rad1 ) ;      wines.add( rad2 ) ;      wines.add( rad3 ) ;      pnl.add( rad1 ) ;      pnl.add( rad2 ) ;      pnl.add( rad3 ) ;      setVisible( true );   }   public static void main ( String[] args )   {      Radios gui = new Radios();   }  }
+import javax.swing.*;class Buttons extends JFrame {   JPanel pnl = new JPanel();   ClassLoader ldr = this.getClass().getClassLoader();   java.net.URL tickURL = ldr.getResource("Tick.png");   java.net.URL crossURL = ldr.getResource("Cross.png");   //ImageIcon tick = new ImageIcon( tickURL );  // ImageIcon cross = new ImageIcon( crossURL );   ImageIcon tick = new ImageIcon( "tick.png" );   ImageIcon cross = new ImageIcon( "cross.png" );   JButton btn = new JButton( "Click Me" );   JButton tickBtn = new JButton( tick );   JButton crossBtn = new JButton( "STOP", cross );      public Buttons()   {      super("Swing Window");      setSize( 500,200 );      setDefaultCloseOperation( EXIT_ON_CLOSE );      add(pnl);         pnl.add( btn );      pnl.add( tickBtn );      pnl.add( crossBtn );      setVisible( true );   }   public static void main ( String[] args )   {      Buttons gui = new Buttons();   } }
+
+### Slide 26
+
+
+
+### Slide 27
+
+Controls
+Controls are GUI components, such as Labels that display text, TextFields that enable a program to receive user input, Buttons that users click to initiate actions, and more.
+Stage
+ The window in which a JavaFX app’s GUI is displayed is known as the stage and is an instance of class Stage (package javafx.stage).
+Scene
+ The stage contains one active scene that defines the GUI as a scene graph—such as GUI controls, shapes, images, video, text and more
+FXML (FX Markup Language)
+
+### Slide 28
+
+Nodes
+Each visual element in the scene graph is a node—an instance of a subclass of Node (package javafx.scene).
+With the exception of the first node in the scene graph—the root node—each node in the scene graph has one parent.
+Nodes can have transforms (e.g., moving, rotating and scaling), opacity (whether a node is transparent, partially transparent or opaque), effects (e.g., drop shadows, blurs, reflection and lighting) and more.
+Layout Containers Nodes that have children are typically layout containers that arrange their child nodes in the scene.
+FXML (FX Markup Language)
+
+### Slide 29
+
+Event Handler and Controller Class
+When the user interacts with a control, such as clicking a Button or typing text into a TextField, the control generates an event.
+Programs can respond to these events—known as event handling—to specify what should happen when each user interaction occurs.
+An event handler is a method that responds to a user interaction.
+An FXML GUI’s event handlers are defined in a so-called controller class (as you’ll see in Section
+FXML (FX Markup Language)
+
+### Slide 30
+
+JavaFX is easier to use (It is an art and design but not coding!)
+
+### Slide 31
+
+Java FX Scene Builder Excercises
+If you have the recommended textbook, practice with many of the exercises including :
+12.4 Welcome App—Displaying Text and an Image
+12.5 Tip Calculator App—Introduction to Event Handling
+
+
+### Slide 32
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 33
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 34
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 35
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 36
+
+Java FX Scene Builder Excercises
+If you have the recommended textbook, practice with many of the exercises including :
+12.4 Welcome App—Displaying Text and an Image
+12.5 Tip Calculator App—Introduction to Event Handling.
+Ensure you practice THOROUGHLY
+
+### Slide 37
+
+Class Activities/Excercises
+With Chapter 12 TipCalculator exercise, you will practice with that and include an extra row in the GridPane
+Follow the exercise in 12.5 from beginning to the end to produce/draw your own TipCalculator GUI and generate your own FXML (DO NOT USE THE SAMPLE FROM CANVAS BUT DRAW/CREATE YOUR OWN FROM SCRATCH.
+Reproduce the TopCalculator codes.
+In the extra row you calculate tax of 10% of the actual price and add this to the amount and the tips.
+The overall addition of amount + 10% tax of amount +  tip =  Total.
+
+
+### Slide 38
+
+Example of Class Activities/Excercises
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 39
+
+Java FX Scene Builder Excercises
+EXTRA SLIDES FOR YOUR PRIVATE PRACTICE
+
+
+### Slide 40
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 41
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 42
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 43
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 44
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 45
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 46
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 47
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 48
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 49
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 50
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 51
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 52
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 53
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 54
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 55
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 56
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 57
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 58
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 59
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 60
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+### Slide 61
+
+© Copyright 1992-2018 by Pearson Education, Inc. All Rights Reserved.
+
+## Manual text (OCR): Chapter 12 Java FX Manual Excerpt SCANNED COPY- 2021-FINAL.txt
+
+### Page 1
+
+12.1 Introduction
+441
+JavaFX Graphical User
+Interfaces: Part 1
+Outline
+Objectives
+In this chapter you'll:
+• Build JavaFX GUls and handle
+events generated by user
+interactions with them.
+• Understand the structure of a
+JavaFX app window.
+• Use JavaFX Scene Builder to
+create FXML files that describe
+JavaFX scenes containing
+Labels, ImageViews.
+TextFields, Sliders and
+Buttons without writing any
+code.
+• Arrange GUll components
+using the VBox and
+GridPane layout containers.
+• Use a controller class to define
+event handlers for lavaFX
+FXML GUI.
+• Build two JavaFX apps.
+12.1 Introduction
+12.2 JavaFX Scene Builder
+12.3 JavaFX App Window Structure
+12.4 Welcome GUl—Displaying Text and
+an Image
+12.4.1 Opening Scene Builder and Creating
+the File We1come. fxm1
+12.4.2 Adding an Image to the Folder
+ContainingWe1come.fxm1
+243, Creating a VBox Layout Container
+2.44 Configuring the VBox Layout Container
+12.45 Adding and Configuring a Label
+12.4.6 Adding and Configuring an
+ImageView
+12.4.7 Previewing the We1come Gul
+12.5 Tip Calculator App-Introductionto
+Event Handling
+12.5.1 Test-Driving the Tip Calculator App
+12.5.2 Technologies Overview
+125.3 Building the App's GUl:
+12.5.4 TipCalculator Class
+125.5 TipCalculatorController Class
+12.6 Features Covered in the Other lavaFX
+Chapters
+12.7 Wrap-Ulp
+Summary | Self-Review Exercises | Answers to Self-Review Exercises | Exercises | Making a Difference
+12.1 Introduction
+A graphical user interface (GUI) presents a user-friendly mechanism for interacting with
+an app. A GUI (pronounced "GOO-ce") gives an app a distinctive "look-and-feel." GUIs
+are built from GUI components—also called controls or widgets (short for window gad-
+gets). A GUI component is an object with which the user interacts via the mouse, the key-
+board or another form of input, such as voice recognition.
+Look-and-Feel Observation 12.1
+Providing different apps with consistent, intuitive user-interface components gives users a
+sense of familiarity with a new app, so that they can learn it more quickly and use it more
+productively.
+History of GUI in Java
+Java's original GUI library was the Abstract Window Toolkit (AWT). Swing was added
+to the platform in Java SE 1.2. Until recently, Swing was the primary Java GUI technol-
+ogy. Swing will remain part of Java and is still widely used. We discuss Swing in online
+Chapters 26 and 35.
+JavaFX is Java's GUI, graphics and multimedia API of the future. Sun Microsystems
+(acquired by Oracle in 2010) announced JavaFX in 2007 as a competitor to Adobe Flash
+and Microsoft Silverlight. JavaFX 1.0 was released in 2008. Prior to version 2.0, devel-
+opers wrote JavaFX apps in JavaFX Script, which compiled to Java bytecode, allowing
+JavaFX apps to run on the Java Virtual Machine. Starting with version 2.0 in 2011,
+JavaFX was reimplemented as Java libraries that could be used directly in Java apps. Some
+of the benefits of JavaFX over Swing include:
+JavaFX is casier to use—it provides one API for client functionality, including
+GUI, graphics and multimedia (images, animation, audio and video). Swing is
+only for GUls, so you need to use other APls for graphics and multimedia apps.
+• With Swing, many IDEs provided GUI design tools for dragging and dropping
+
+### Page 2
+
+442 Chapter 12 JavaFX Graphical User Interfaces: Part 1
+be used standalone or integrated with many IDEs and it produces the same code
+regardless of the IDE.
+• Though Swing components could be customized, JavaFX gives you complete
+control over a JavaFX GUT's look-and-feel (Chapter 13) via Cascading Style
+Sheets (CSS) — the same technology used to style web pages.
+• JavaFX has better threading support, which is important for getting the best ap-
+plication performance on today's multi-core systems.
+• JavaFX uses the GPU (graphics processing unit) for hardware-accelerated rendering.
+• JavaFX supports transformations for repositioning and reorienting JavaFX com-
+ponents, and animations for changing the properties of JavaFX components over
+time. These can be used to make apps more intuitive and easier to use.
+JavaFX provides multiple upgrade paths for enhancing existing GUIs-Swing
+GUI capabilities may be embedded into JavaFX apps via class SwingNode and
+JavaFX capabilities may be embedded into Swing apps via class JFXPane1.
+This chapter introduces JavaFX GUI basics---we present a more detailed treatment of Java
+FX GUI in the next chapter. Chapter 22 discusses graphics and multimedia. We placed
+the Java How to Program, 10le Swing and Java 2D chapters on the book's Companion
+Website—see the inside front cover for Companion Website access instructions.
+12.2 JavaFX Scene Builder
+Most Java textbooks that introduce GUI programming provide hand-coded GUIs-that
+is, the authors build the GUls from scratch in Java code, rather than using a visual GUI
+design tool. This is due to the fractured Java IDE market-there are many Java IDEs, so
+authors can't depend on any one IDE being used, and each generates different code.
+JavaFX is organized differently. The Scene Builder tool is a standalone JavaFX GUI
+visual layout tool that can also be used with various IDEs, including the most popular
+ones—Eclipse, IntelliJ IDEA and NetBeans. You can download Scene Builder at:
+http://gluonhq.com/1abs/scene-builder/
+JavaFX Scene Builder enables you to create GUls by dragging and dropping GUI
+components from Scene Builder's library onto a design area, then modifying and styling
+the GUI—all without writing any code. JavaFX Scene Builder's live editing and preview
+features allow you to view your GUI as you create and modify it, without compiling and
+running the app. You can use Cascading Style Sheets (CSS) to change the entire look-
+and-fcel of your GUI—a concept sometimes called skinning. In Chapter 22, we'll intro-
+duce styling with CSS.
+EXML (FX Markup Language)
+As you create and modify a GUI, JavaFX Scene Builder generates FXML (FX Markup
+Language)—an XML vocabulary for defining and arranging JavaFX GUI controls with-
+out writing any Java code. XML (eXtensible Markup Language) is a widely used language
+for describing things—it's readable both by computers and by humans. In JavaFX, FXML
+concisely describes GUI, graphics and multimedia elements. You do not need to know
+FXML or XML to study this chabter. As vou'll see in Sectinn 10 4 IomFY Srona Roillao
+12.3 JavaFX App Window Structure
+443
+hides the FXML details from you, so you can focus on defining what the GUI should con-
+rain without specifying bow to generate it—this is an example of declarative programming.
+Software Engineering Observation I2.1
+The FXML code is separate from the program logic that's defined in Java source code
+this separation of the interface (the GUI) from the implementation (the Java code) makes
+it easier to debug, modify and maintain JavaFX GUI apps.
+12.3 JavaFX App Window Structure
+A JavaFX app window consists of several parts (Fig. 12.1).
+The window is known as the stage
+Rl Tip Calcu..
+The stage contains a
+scene graph of nodes
+The root node of this scene graph is
+a layout container that arranges the
+other nodes
+Each of the JavaFX
+components in this GUl is a
+node in the scene graph
+Fig. 12.1
+JavaFX app window parts.
+Controls
+Controls are GUI components, such as Labels that display text, TextFie1ds that enable a
+program to receive user input, Buttons that users click to initiate actions, and more.
+Stage
+The window in which a JavaFX app's GUI is displayed is known as the stage and is an
+instance of class Stage (package javafx.stage).
+Scene
+The stage contains one active scene that defines the GUI as a scene graph—-a tree data
+structure of an app's visual elements, such as GUI controls, shapes, images, video, text and
+more (trees are discussed in Section 21.7). The scene is an instance of class Scene (package
+javafx.scene).
+Each visual element in the scene graph is a node—-an instance of a subclass of Node (pack-
+age javafx.scene), which defines common attributes and behaviors for all nodes. With
+the exception of the first node in the scene graph——-the root node—-each node in the scene
+graph has one parent. Nodes can have transforms (c.g» moving, rotating and scaling),
+opacity (whether a node is transparent, partially transparent or opaque), effects (e.g., drop
+shadows. blurs, reflection and lighting) and more that we'll introduce in Chapter 22.
+
+### Page 3
+
+444 Chapter 12 JavaFX Graphical User Interfaces: Part 1
+Layout Containers
+Nodes that have children are typically layout containers that arrange their child nodes in
+the scene. You'll use two layout containers (VBox and GridPane) in this chapter and learn
+several more in Chapters 13-22. The nodes arranged in a layout container are a combina-
+tion of controls and, in more complex GUls, possibly other layout containers.
+Event Handler and Controller Class
+When the user interacts with a control, such as clicking a Button or typing text into a
+TextField, the control generates an event. Programs can respond to these events—-known
+as event handling—to specify what should happen when each user interaction occurs. An
+event handler is a method that responds to a user interaction. An FXML GUT's event han-
+dlers are defined in a so-called controller class (as you'll see in Section 12.5.5).
+12.4 Welcome App—Displaying Text and an Image
+In this section, without writing any code, you'll build a GUI that displays text in a Label
+and an image in an ImageView (Fig. 12.2). You'll use visual-programming techniques to
+drag-and-drop JavaFX components onto Scene Builder's content panel—the design area.
+Next, you'll use Scene Builder's Inspector to configure options, such as the Labe1s's text
+and font size, and the ImageView's image. Finally, you'll view the completed GUI using
+Scene Builder's Show Preview in Window option. In Section 12.5's Tip Calculator app, we'll
+discuss the Java code necessary to load and display an FXML GUI. Then, in Exercise 12.3,
+you'll create the Java application that displays the Welcome GUI you build in this section.
+B3 Welcome.fxml
+Welcome to JavaFX!
+Label component
+ImageView component
+Fig. 12.2 | Final Welcome GUl in a preview window on Microsoft Windows 10.
+12.4.1 Opening Scene Builder and Creating the File Welcome.fxm1
+Open Scene Builder so that you can create the FXML file that defines the GUI. The win-
+dow initially appears as shown in Fig. 12.3. Untitled at the top of the window indicates that
+Seene Buider hascre sed anew EXM.Lfle thar you have not yet saved! Select File → Save
+dianlaneh.Coa A_J:lA La..1.
+12.4 Welcome App-Displaying Text and an lmage
+445
+The Library contains JavaFX Containers,
+Controls and other items that can be dragged
+and dropped on the canvas
+You use the
+content panel to
+design the GUl
+You use the Inspector window to
+configure the currently selected item in
+the content panel
+00-
+Prccetes
+emphd
+sne lempty) (FXG)
+Drac Library i
+The Document window's Hierarchy section shows the structure of
+the GUI and allows you to select and reorganize controls
+Fig. 12.3 | JavaFX Scene Builder when you first open it.
+12.4.2 Adding an Image to the Folder Containing Welcome. fxml
+The image you'll use for this app (bug. png) is located in the i mages subfolder of this chap-
+ter's examples folder. To make it easy to find the image when you're ready to add it to the
+app, locate the images folder on your file system, then copy bug. png into the folder where
+you saved Welcome.fxm1.
+12.4.3 Creating a VBox Layout Container
+For this app, you'll place a Label and an ImageView in a VBox layout container (package
+javafx.scene. layout), which will be the scene graph's root node. Layout containers help
+you arrange and size GUI components. A VBox arranges its nodes vertically from top to
+bottom. We discuss the GridPane layout container in Section 12.5 and several others in
+Chapter 13. To add a VBox to Scene Builder's content panel so you can begin designing
+1. We show the Scene Builder screen captures on Microsoft Windows 10, bue Scene Builder is nearly
+i. dni ahn mnns hir nn marnS ic ar
+
+### Page 4
+
+446 Chapter 12 JavaFX Graphical User Interfaces: Part 1
+the GUI, double-click VBox in the Library window's Containers section. (You also can
+drag-and-drop a VBox from the Containers section onto Scene Builder's content panel.)
+12.4.4 Configuring the VBox Layout Container
+You'll now specify the VBox's alignment, initial size and padding.
+Specifying the VBox'sAlignment
+A VBox's alignment determines the layout positioning of the VBox's children. In this app,
+we'd like each child node (the Labe1 and the ImageVi ew) to be centered horizontally in the
+scene, and we'd like both children to be centered vertically, so that there is an equal
+amount of space above the Label and below the ImageView. To accomplish this:
+1. Select the VBox in Scene Builder's content panel by clicking it. Scene Builder dis-
+plays many VBox properties in the Scene Builder Inspector's Properties section.
+2. Click the Alignment property's drop-down list and notice the variety of potential
+alignment values you can use. Click CENTER to set the Alignment.
+Each property value you specify for a JavaFX object is used to set one of that object's in-
+stance variables when JavaFX creates the object at runtime.
+Specifying the VBox's Preferred Size
+The preferred size (width and height) of the scene graph's root node is used by the scene
+to determine its window size when the app begins executing. To set the preferred size:
+1. Select the VBox.
+2. Expand the Inspector's Layout section by clicking the right arrow (E) next to
+Layout. The section expands and the right arrow changes to a down arrow. Click-
+ing the arrow again would collapse the section.
+3. Click the Pref Width property's text field, type 450 and press Enter to change the
+preferred width.
+4. Click the Pref Height property's text field, type 300 and press Enter to change the
+preferred height.
+12.4.5 Adding and Configuring a Label
+Next, you'll create the Labe1 that displays "Welcome to JavaFX!".
+Adding a Label to the VBox
+Expand the Scene Builder Library window's Controls section by clicking the right arrow
+(B) next to Controls, then drag-and-drop a Label from the Controls section onto the VBox
+in Scene Builder's content panel. (You also can double-click Label in the Containers sec-
+tion to add the Label.) Scene Builder automatically centers the Label object horizontally
+and vertically in the VBox, based on the VBox's Alignment property.
+Changing the Label's Text
+You can set a Label's text either by double clicking it and typing the new text, or by se-
+lecting the Label and setting its Text property in the Inspector's Properties section. Set the
+12.4 Welcome App-Displaying Text and an Image
+447
+Changing the Label's Font
+For this app, we set the Label to display in a large bold font. To do so, select the Label,
+then in the Inspector's Properties section, click the value to the right of the Font property.
+In the window that appears, set the Style property to Bold and the Size property to 30. The
+design should now appear as shown in Fig. 12.4.
+-Welcome to JavaFX!:
+Scene Builder highlights
+the container in which the
+selected control appears
+Selected control—you can
+drag the blue handles at
+the sides and corners to
+resize the control
+Fig. 12.4 | Welcome GUl's design after adding and configuring a Label.
+12.4.6 Adding and Configuring an ImageView
+Finally, you'll add the ImageView that displays bug. png.
+Adding an ImageView to the VBox
+Drag and drop an ImageView from the Library window's Controls section to just below the
+Labe1, as shown in Fig. 12.5. You can also double-click ImageView in the Library window,
+in which case Scene Builder automatically places the new ImageView object below the La-
+be1. You can reorder a VBox's controls by dragging them in the VBox or in the Document
+window's Hierarchy section (Fig. 12.3). Scene Builder automatically centers the ImageView
+horizontally in the VBox. Also notice that the Labe1 and ImageVi ew are centered vertically
+such that the same amount of space appears above the Label and below the ImageView.
+Setting the ImageView's Image
+Next you'll set the image to display:
+1. Select the ImageView, then in the Inspector's Properties section click the ellipsis
+(...) button to the right of the lmage property. By default, Scene Builder opens a
+dialog showing the folder in which the FXML file is saved. This is where you
+placed the image file bug. png in Section 12.4.2.
+2. Select the image file, then click Open. Scene Builder displays the image and resizes
+the TmaaeView to match the image's aspect ratio—that is, the racio of the image's
+
+### Page 5
+
+448 Chapter 12 JavaFX Graphical User Interfaces: Part 1
+Scene Builder highlights
+the container in which the
+control will be placed
+Weicome to JavaFX!
+For a VBox, Scene Builder
+indicates where the new
+control will be placed by
+displaying a gray guide line
+Scene Builder displays a
+yellow box representing the
+control you're dropping
+onto the design
+Fig. 12.5 | Dragging and dropping the ImageView below the Label.
+Changing the ImageView's Size
+We'd like to display the image at its original size. If you reset the ImageView's default Fit
+Width and Fit Height property values——which Scene Builder set when you added the
+ImageView to the design—Scene Builder will resize the ImageView to the image's exact di-
+mensions. To reset these properties:
+1. Expand the Inspector's Layout section.
+2. Hover the mouse over the Fit Width property's value. This displays the button g
+to the right property's value. Click the button and select Reset to Default to reset
+the value. This technique can be used with any property value to reset its default.
+3. Repeat Step 2 to reset the Fit Height property's value.
+You've now completed the GUI. Scene Builder's content panel should now appear as
+shown in Fig. 12.6. Save the FXML file by selecting File > Save.
+Welcome to JavaFX!
+12.5 Tip Calculator App-Introduction to Event Handling
+449
+12.4.7 Previewing the Welcome GUl
+You can preview what the design will look like in a running application's window. To do
+so, select Preview > Show Preview in Window, which displays the window in Fig. 12.7.
+E3 Welcome.fxml
+Welcome to JavaFX!
+Fig. 12.7 Previewing the Welcome GUI on Microsoft Windows I0—only the window
+borders will differ on Linux, macOS and earlier Windows versions.
+12.5 Tip Calculator App-Introduction to Event
+Handling
+The Tip Calculator app (Fig. 12.8(a)) calculates and displays a restaurant bill tip and total.
+By default, the app calculates the total with a 15% tip. You can specify a tip percentage
+from 0% to 30% by moving the Slider thumbthis updates the tip percentage
+(Fig. 12.8(b) and (c)). In this section, you'll build a Tip Calculator app using several JavaFX
+components and learn how to respond to user interactions with the GUI.
+a) Initial Tip Calculator GUl
+Title bar
+-E3 Tip Caleu... -
+Enter the bill amount in this
+TextField
+Amoum
+Current tip percentage
+is displayed in this Label
+Move the Slider thumb to
+change the tip percentage
+Tip
+Totat
+cakulate
+
+### Page 6
+
+450
+Chapter 12 JavaFX Graphical User Interfaces: Part
+b) GUl after you enter the amount 34.56
+and click the Calculate Button
+13 Tip Calcu... -
+Arnount
+34.56
+15%
+Tip
+$5.18
+Hnta
+Updated tip percentage
+after the user moved the
+Slider's thumb
+Laculate
+Click the Calculate Button to
+display the tip and total
+c) GUl after user moves the S1 ider's thumb to change the tip
+percentage to 20%, then clicks the Calculate Button
+E3 Tip Caleu...
+Amount
+-20%
+Tip
+$6.91
+Total
+$41.47
+Colculate
+Fig. 12.8 | Entering the bill amount and calculating the tip. (Part 2 of 2.)
+You'll begin by test-driving the app, using it to calculate 15% and 20% tips. Then
+we'll overview the technologies you'll use to create the app. You'll build the app's GUI
+using the Scene Builder. Finally, we'll present the complete Java code for the app and do
+a detailed code walkthrough.
+12.5.1 Test-Driving the Tip Calculator App
+Compile and run the app located in the TipCalculator folder with this chapter's exam-
+ples. The class containing the main method is named TipCalculator.
+Entering a Bill Total
+Using your keyboard, enter 34.56, then press the Calculate Button. The Tip and Total
+TextFields show the tip amount and the total bill for a 15% tip (Fig. 12.8(b)).
+Selecting a Custom Tip Percentage
+Use the Slider to specify a custom tip percentage. Drag the S1ider's thumb until the per-
+centage reads 20% (Fig. 12.8(c)), then press the Calculate Button to display the updated
+tip and total. As you drag the thumb, the tip percentage in the Label to the Slider's left
+ubdates continuouslv. Bv default. the S1ider allows vou mo seleet valnes from 0.0 m 100.0.
+12.5 Tip Calculator App-Introduction to Event Handling
+451
+12.5.2 Technologies Overview
+This section introduces the technologies you'll use to build the Tip Calculator app.
+Class Application
+The class responsible for launching a JavaFX app is a subclass of Application (package
+javafx.application). When the subclass's main method is called:
+1. Method main calls class Application's static launch method to begin executing
+2. The launch method, in turn, causes the JavaFX runtime to create an object of the
+Application subclass and call its start method.
+3. The Application subclass's start method creates the GUI, attaches it to a Scene
+and places it on the Stage that start receives as an argument.
+Arranging JavalX Components with a GridPane
+Recall that layout containers arrange JavaFX components in a Scene. A GridPane (package
+javafx.scene.Tayout) arranges JavaFX components into columns and rows in a rectangu-
+This app uses a GridPane (Fig. 12.9) to arrange views into two columns and five rows.
+Each cell in a GridPane can be empty or can hold one or more JavaFX components,
+including layout containers that arrange other controls. Each component in a GridPane
+can span multiple columns or rows, though we did not use that capability in this GUI.
+When you drag a GridPane onto Scene Builder's content panel, Scene Builder creates the
+GridPane with two columns and three rows by default. You can add and remove columns
+and rows as necessary. We'll discuss other GridPane features as we present the GUI-
+building steps. To learn more about class GridPane, visit:
+https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Tayout/
+GridPane.html
+row 0
+row 1
+row 2
+row 3
+row 4
+column 0
+Rl Tip Caleu.. -
+Amount
+15%
+Tip
+Total
+column1
+Calculate
+
+### Page 7
+
+452 Chapter 12 JavaFX Graphical User Interfaces: Part I
+Creating and Customizingthe GUI with Scene Builder
+You'll create Labels, TextFields, a Slider and a Button by dragging them onto Scene
+Builder's content panel, then customize them using the Inspector window.
+• A TextField (package javafx.scene.contro1) can accept text input from the
+user or display text. You'll use one editable TextField to input the bill amount
+from the user and two uneditable TextFields to display the tip and total
+amounts.
+• A Slider (package javafx.scene.control) represents a value in the range 0.0-
+100.0 by default and allows the user to select a number in that range by moving
+the Slider's thumb. You'll customize the S1ider so the user can choose a custom
+tip percentage only from the more limited integer range 0 to 30.
+• A Button (package javafx.scene.contro1) allows the user to initiate an ac-
+tion—in this app, pressing the Calculate Button calculates and displays the tip
+and total amounts.
+Formatting Numbers as Locale-Specific Currency and Percentage Strings
+You'll use class NumberFormat (package java.text) to create locale-specific currency and
+percentage strings—an important part of internationalization.?
+Event Handling
+the app to send the e-mail to the specified e-mail addresses.
+tion—-known as an event—drives the program to perform a task. Some common user
+interactions that cause an app to perform a task include clicking a button, typing in a text
+field, selecting an item from a menu, closing a window and moving the mouse. The code
+that performs a task in response to an event is called an event handler, and the process of
+responding to events is known as event handling.
+Before an app can respond to an event for a particular control, you must:
+1. Define an event handler that implements an appropriate interface—-known as an
+event-listener interface.
+2. Indicate that an object of that class should be notified when the event occurs-
+known as registering the event handler.
+In this app, you'll respond to two events—when the user moves the Slider's thumb,
+the app will update the Label that displays the current tip percentage, and when the user
+clicks the Calculate Button, the app will calculate and display the tip and total bill amount.
+You'll see that for certain events—such as when the user clicks a Button—you can
+link a control to its event-handling method by using the Code section of Scene Builder's
+Inspector window. In this case, the event-listener interface is implemented for you to call
+the method that you specify. For events that occur when the value of a control's property
+2.Recall thatthenew JavaMoneyAPI(http://javamoney.github.io) was developed to meet the
+challenoes ofhandlinn currencine manstrr amninee mnuneinne
+12.5 Tip Calculator App-Introductionto Event Handling 453
+changes-
+_such as when the user moves a 51ider's thumb to change the S1ider's value—
+you'll see that you must create the event handler entirely in code.
+Implementing Interface ChangeListener for Handling Slider Thumb Position
+You'll implement interface ChangeListener (package javafx.beans.value) to respond
+when the user moves the STider's thumb. In particular, you'll use the interface's changed
+method to display the updated tip percentage as the user moves the Slider's thumb.
+Model-View-Controller (MVC) Architecture
+JavaFX applications in which the GUI is implemented as FXML adhere to the Model-
+View-Controller (MVC) design pattern, which separates an app's data (contained in the
+model) from the app's GUI (the view) and the app's processing logic (the controller).
+The controller implements logic for processing user inputs. The model contains appli-
+cation data, and the view presents the data stored in the model. When a user provides some
+input, the controller modifies the model with the given input. In the Tip Calculator, the
+model is the bill amount, the tip and the rotal. When the model changes, the controller
+updates the view to present the changed data.
+In a JavaFX FXML app, a controller class defines instance variables for interacting
+with controls programmatically, as well as event-handling methods that respond to the
+user's interactions.
+The controller class may also declare additional instance variables,
+static variables and methods that support the app's operation. In a simple app like the
+Tip Calculator, the model and controller are often combined into a single class, as we'll do
+in this example.
+FXMLLoader Class
+When a JavaFX FXML app begins executing, class FXMLLoader's static method Toad is
+used to load the FXML file that represents the app's GUI. This method:
+• Creates the GUT's scene graph—containing the GUI's layouts and controls-and
+returns a Parent (package javafx. scene) reference to the scene graph's root
+• Initializes the controller's instance variables for the components that are manip-
+ulated programmatically.
+• Creates and registers the event handlers for any events specified in the FXML.
+We'll discuss these steps in more detail in Sections 12.5.4—12.5.5.
+12.5.3 Building the App's GUI
+In this section, we'll show the precise steps for creating the Tip Calculator's GUI. The GUI
+will not look like the one shown in Fig. 12.8 until you've completed the steps.
+fx:id Property Values for This App's Controls
+If the controller class will manipulate a control or layout programmatically (as we'll do
+with one Label, all the TextFields and the Slider), you must provide a name for that
+control or layour. In Section 12.5.4, you'll learn how to declare Java variables for each such
+component in the FXML, and we'll discuss how those variables are initialized for you.
+
+### Page 8
+
+454 Chapter 12JavaFX Graphical User Interfaces: Part I
+selecting a component in your scene, then expanding the Inspector window's Code sec-
+tion—the fx:id property appears at the top of the Code section. Figure 12.10 shows the
+fx:id properties of the Tip Calculator's programmatically manipulated controls. For clarity,
+our naming convention is to use the control's class name in the fxiid property.
+8l Tip Calcu...?-
+Amount
+LL
+. amountTextField
+tipPercentagelabel
+-15%
+- tipPercentageSlider
+Tip
+- tipTextField
+Total
+- totalTextField
+Calculate
+Fig. 12.10 Tip Calculator's programmatically manipulated controls labeled with their fx:ids.
+Creating the TipCalculator.fxm1 File
+As you did in Section 12.4.1, open Scene Builder to create a new FXML file. Then, select
+File > Save to display the Save As dialog, specify the location in which to store the file,
+name the file TipCalculator. fxm1 and click the Save button.
+Step 1: Adding a GridPane
+Drag a GridPane from the Library window's Containers section onto Scene Builder's con-
+tent panel. By default, the GridPane contains two columns and three rows as shown in
+Fig. 12.11.
+Click this tab to select column1
+Click this tab to
+select row 0
+12.5 Tip Calculator App-Introduction to Event Handling
+455
+Step 2: Adding Rows to the GridPane
+Recall that the GUI in Fig. 12.9 has two columns and five rows. Here you'll add two more
+rows. To add a row above or below an existing row:
+1.Rightclickany row'srow number tab and select either Grid Pane > Add Row
+Above or Grid Pane > Add Row Below.
+2. Repeat this process to add another row.
+After adding two rows, the GridPane should appear as shown in Fig. 12.12. You can use
+similar steps to add columns. You can delete a row or column by right clicking the tab con-
+taining its row or column number and selecting Delete.
+Fig. 12.12 | GridPane after adding two more rows.
+Step 3: Adding the Controls to the GridPane
+You'll now add the controls in Fig. 12.9 to the GridPane. For each control that has an fx.id
+n Fig. 12.10, when you drag the control onto the GridPane, set the control's fx:id prop-
+erty in the Inspector window's Code section. Perform the following steps:
+1. Adding the Labels. Drag Labels from the Library window's Controls section into
+the first four rows of column 0 (the GridPane's left column). As you add each La-
+be1, set its text as shown Fig. 12.9.
+2. Adding the TextFields. Drag TextFields from the Library window's Controls
+section into rows 0, 2 and 3 of column 1 (the GridPane's right column).
+3. Adding a S7 ider. Drag a horizontal Slider from the Library window's Controls
+section into row 1 of column 1.
+4. Adding a Button. Drag a Button from the Library window's Controls section into
+row 4 of column 1. Change the Button's text to Calculate. You can set the But-
+ton's text by double clicking it, or by selecting the Button, then setting its Text
+property in the Inspector window's Properties section.
+
+### Page 9
+
+456
+Chapter 12 JavaFX Graphical User Interfaces: Part |
+Fig. 12.13 | GridPane filled with the Tip Calculator's controls.
+Step 4: Sizing the GridPane to Fit Its Contents
+When you begin designing a GUI by adding a layout, Scene Builder automatically sets the
+layout object's Pref Width property to 600 and Pref Height property to 400, which is much
+larger than this GUT's final width and height. For this app, we'd like the layout's size to be
+computed, based on the layout's contents. To make this change:
+1. First, select the GridPane by clicking inside the GridPane, but not on any of the
+controls you've placed into its columns and rows. Sometimes, it's easier to select
+the GridPane node in the Scene Builder Document window's Hierarchy section.
+2. In the Inspector's Layout section, reset the Pref Width and Pref Height property
+values to their defaults (as you did in Section 12.4.4). This sets both properties'
+values to USE_COMPUTED_SIZE, so the layout calculates its own size.
+The layout now appears as shown in Fig. 12.14.
+Amount
+Total
+Calculate
+Fig. 12.14 | GridPane sized to fit its contents.
+Step 5: Right-Aligning GridPane Column O's Contents
+A GridPane column's contents are left-aligned by default. To right-align the contents of
+column O, select it by clicking the tab at the top or bottom of the column, then in the In-
+spector's Layout section, set the Halignment (horizontal alignment) property to RIGHT.
+12.5 Tip CalculatorApp-Introduction to Event Handling
+457
+Step 6: Sizing the GridPane Columns to Fit Their Contents
+By default, Scene Builder sets cach GridPane column's width to 100 pixels and each row's
+height to 30 pixels to ensure that you can easily drag controls into the GridPane's cells. In
+this app, we sized each column to fit its contents. To do so, select the column 0 by clicking
+the tab at the top or bottom of the column, then in the Inspector's Layout section, reset
+the Pref Width property to its default size (that is, USE_COMPUTED_SIZE) to indicate that the
+column's width should be based on its widest child—the Amount Label in this case. Re-
+peat this process for column 1. The GridPane should appear as shown in Fig. 12.15.
+Fig. 12.15 | GridPane with columns sized to fit their contents.
+Step 7: Sizing the Button
+By default, Scene Builder sets a Button's width based on its text. For this app, we chose to
+make the Button the same width as the other controls in the GridPane's right column. To
+do so, select the Button, then in the Inspector's Layout section, set the Max Width property
+to MAX_VALUE. This causes the Button's width to grow to fill the column's width.
+Previewing the GUI
+Preview the GUI by selecting Preview > Show Preview in Window. As you can see in
+Fig. 12.16, there's no space between the Labels in the left column and the controls in the
+right column. In addition, there's no space around the GridPane, because by default the
+Stage is sized to fit the Scene's contents. Thus, many of the controls touch the window's
+borders. You'll fix these issues in the next step.
+Tio
+Total
+Calainste
+Fig. 12.16 | Gridane with the TextFields and Button resized.
+Step 8: Configuring the GridPane's Padding and Horizontal Gap Between Its Columns
+The space between a node's contents and its top, right, bottom and left edges is known as
+the padding, which separates the contents from the node's edges. Since the GridPane's size
+
+### Page 10
+
+456
+Chapter 12JavaFX Graphical User Interfaces: Part 1
+Fig. 12.13 | GridPane filled with the Tip Calculator's controls.
+Step 4: Sizing the GridPane to Fit Its Contents
+When you begin designing a GUI by adding a layout, Scene Builder automatically sets the
+layout object's Pref Width property to 600 and Pref Height property to 400, which is much
+larger than this GUI's final width and height. For this app, we'd like the layout's size to be
+computed, based on the layout's contents. To make this change:
+1. First, select the GridPane by clicking inside the GridPane, but not on any of the
+controls you've placed into its columns and rows. Sometimes, it's easier to select
+the GridPane node in the Scene Builder Document window's Hierarchy section.
+2.In the Inspector's Layout section, reset the Pref Width and Pref Height property
+values to their defaults (as you did in Section 12.4.4). This sets both properties'
+values to USE_COMPUTED_SIZE, so the layout calculates its own size.
+The layout now appears as shown in Fig. 12.14.
+Cakelate
+Fig. 12.14 | GridPane sized to fit its contents.
+Step 5: Right-Aligning GridPane Column O's Contents
+A GridPane column's contents are left-aligned by default. To right-align the contents of
+column O, select it by clicking the tab at the ton or hortom of the mlamn rhen in tha in-
+12.5 Tip Calculator App-Introduction to Event Handling
+457
+Step 6: Sizing the GridPane Columns to Fit Their Contents
+By default, Scene Builder sets each GridPane column's width to 100 pixels and each row's
+height to 30 pixels to ensure that you can easily drag controls into the GridPane's cells. In
+this app, we sized each column to fit its contents. To do so, select the column 0 by clicking
+the tab at the top or bottom of the column, then in the Inspector's Layout section, reset
+the Pref Width property to its default size (that is, USE_COMPUTED_SIZE) to indicate that the
+column's width should be based on its widest child—the Amount Label in this case. Re-
+peat this process for column 1. The GridPane should appear as shown in Fig. 12.15.
+Fig. 12.15 GridPane withcolumns sized to fit their contents.
+Step 7: Sizing the Button
+By default, Scene Builder sets a Button's width based on its text. For this app, we chose to
+make the Button the same width as the other controls in the GridPane's right column. To
+do so, select the Button, then in the Inspector's Layout section, set the Max Width property
+to MAX_VALUE. This causes the Button's width to grow to fill the column's width.
+Previewing the GUI
+Preview the GUI by selecting Preview > Show Preview in Window. As you can see in
+Fig. 12.16, there's no space between the Labels in the left column and the controls in the
+right column. In addition, there's no space around the GridPane, because by default the
+Stage is sized to fit the Scene's contents. Thus, many of the controls touch the window's
+borders. You'll fix these issues in the next step.
+83 TL.
+Calulate
+Fig. 12.16 GridPane with the TextFields and Button resized.
+Step 8: Configuring the GridPane's Padding and Horizontal Gap Between Its Columns
+J.Calmnaia lannioin an
+
+### Page 11
+
+458 Chapter 12 JavaFX Graphical User Interfaces: Part 1
+determines the Stage's window size, the GridPane's padding separates its children from
+the window's edges. To set the padding, select the GridPane, then in the Inspector's Layout
+section, set the Padding property's four values (which represent the TOP, RIGHT, BOTTOM
+and LEFT) to 14—the JavaFX recommended distance between a control's edge and the
+You can specify the default amount of space between a GridPane's columns and rows
+with its Hgap (horizontal gap) and Vgap (vertical gap) properties, respectively. Because
+Scene Builder sets each GridPane row's height to 30 pixels-—which is greater than. the
+heights of this app's controls—there's already some vertical space between the compo-
+nents. To specify the horizontal gap between the columns, select the GridPane in the Doc-
+ument window's Hierarchy section, then in the Inspector's Layout section, set the Hgap
+property to 8—the recommended distance between controls. If you'd like to precisely con-
+trol the vertical space between components, you can reset each row's Pref Height to its
+default value, then set the GridPane's Vgap property.
+Step 9: Making the tipTextField and totalTextField Uneditable and Not
+The tiptextField and totalTextField are used in this app only to display results, not
+receive text input. For this reason, they should not be interactive. You can type in a Text-
+Field only ifit's "in focus"—that is, it's the control that the user is interacting with. When
+you click an interactive control, it receives the focus. Similarly, when you press the Tab
+key, the focus transfers from the current focusable control to the next one—this occurs in
+the order the controls were added to the GUI. Interactive controls—such as TextFields,
+Sliders and Buttons—are focusable by default. Non-interactive controls—like Labels-
+In this app, the tipTextField and totalTextField are neither editable nor focus-
+able. To make these changes, select both TextFields, then in the Inspector's Properties
+section uncheck the Editable and Focus Traversable properties. To select multiple controls
+at once, you can click the first (in the Document window's Hierarchy section or in the con-
+tent panel), then hold the Shift key and click each of the others.
+Step 10: Setting the Slider's Properties
+To complete the GUI, you'll now configure the Tip Calculator's Slider. By default, a
+51 ider's range is 0.0 to 100.0 and its initial value is 0.0. This app allows only integer tip
+percentages in the range 0 to 30 with a default of 15. To make these changes, select the
+51 ider, then in the Inspector's Properties section, set the S1 i der's Max property to 30 and
+the Value property to 15. We also set the Block Increment property to 5—this is the amount
+by which the Value property increases or decreases when the user clicks between an end of
+the Slider and the S1ider's thumb. Save the FXML file by selecting File > Save.
+Though we set the Max, Value and Block Increment properties to integer values, the
+Slider still produces floating-point values as the user moves its thumb. In the app's Java
+code, we'll restrict the ST-i der's values to integers when we respond to its events.
+Previewing the Final Layout
+You've now comoleted the Tin Caleulator's desion Select Proviow - Shaw Droviow in Min-
+12.5 Tip Calculator App-Introduction to Event Handling
+459
+class in Section 12.5.5, we'll show how to specify the Calculate Button's event handler in
+the FXML file.
+8 TipCalcul...
+Amount
+15%
+Tip
+Total
+X
+Calculate
+Fig. 12.17 | Final GUll design previewed in Scene Builder.
+Specifying the Controller Class's Name
+Ás we mentioned in Section 12.5.2, in a JavaFX FXML app, the app's controller class typ-
+ically defines instance variables for interacting with controls programmatically, as well as
+event-handling methods. To ensure that an object of the controller class is created when
+the app loads the FXML file at runtime, you must specify the controller class's name in
+the FXML file:
+1. Expand Scene Builder Document window's Controller section (located below the
+Hierarchy section in Fig. 12.3).
+2. In the Controller Class field, type TipCalculatorController—by convention,
+the controller class's name starts with the same name as the FXML file (TipCal-
+culator) and ends with Controller.
+Specifying the Calculate Button's Event-Handler Method Name
+You can specify in the FXML file the names of the methods that will be called to handle
+specific control's events. When you select a control, the Inspector window's Code section
+shows all the events for which you can specify event handlers in the FXML file. When the
+user clicks a Button, the method specified in the On Action field is called—this method is
+defined in the controller class you specify in Scene Builder's Controller window. Enter cal -
+culateButtonPressed in the On Action field.
+Generating a Sample Controller Class
+You can have Scene Builder generate the initial controller class containing the variables
+you'll use to interact with controls programmatically and the empty Calculate Button
+event handler. Scene Builder calls this the "controller skeleton." Select View > Show Sam-
+ple Controller Skeleton to generate the skeleton (Fig. 12.18). As you can see, che sample
+class has the class name you specified, a variable for each control that has an fx:id and an
+empty Calculate Button event handler. We'll discuss the @FXML annotation in
+Section 12.5.5 To use this skeleton to create your controller class, you can click the Copy
+Liaina chenn mnnendhes montanee inta a fla namad TinColeulatorControllar iava in the
+
+### Page 12
+
+460
+Chapter 12 JavaFX Graphical User Interfaces: Part 1
+Sample Skeleton for 'TipCalculator.fxml" Controller Class
+import javafx.fxml.FXML;
+import javafx.scene.controi.Label;
+import javafx.scene.control.Slider:
+import javafx.scene.control.TextField;
+public class TipCaiculatorController (
+private Label tipPercentagelabei;
+@FXML
+private TextField amountTextField
+@FXML
+private TextField tipTextField:
+@FXML
+private TextField totalTextField:
+@FXML
+private Slider tipPercentageSlider,
+@FXML
+void calculateButtor
+tionEvent event) (
+X
+Comments
+Full
+Fig. 12.18 | Skeleton code generated by Scene Builder.
+12.5.4 TipCalculator Class
+A simpleJavaFX FXML-based app has two Java source-code files. For the Tip Calculator
+app these are:
+• TipCalculator.java—This file contains the TipCalculator class (discussed in
+this section), which declares the main method that loads the FXML fle to create
+the GUI and attaches the GUI to a Scene displayed on the app's Stage.
+•TipCalculatorController.iava-This file conrains the TioCalculatorCon-
+troller class (discussed in Section 12.5.5), where you'll specify the S1ider and
+Button controls' event handlers.
+Figure 12.19 presents class TipCalculator. As we discussed in Section 12.5.2, the starting
+point for a JavaFX app is an Application subclass, so class TipCalculator extends
+Application (line 9). The main method calls class Application's static launch method
+(line 23) to initialize the JavaFX runtime and to begin executing the app. This method
+causes the JavaFX runtime to create an object of the TipCalculator class and calls its
+start method (lines 10-19), Dassing the Stage obiect representine the window in which
+12.5 Tip Calculator App-Introduction to Event Handling
+461
+W N
+ur a
+// Fig. 12.19: TipCalculator.java
+// Main app class that loads and displays the Tip Calculator''s GUI
+import javafx.application.Application;
+import javafx.fxm1.FXMLLoader;
+import javafx.scene.Parent;
+1. retian:Apiteadieplays the Tip caleutator's al
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+public class TipCalculator extends Application {
+10
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+public void start(Stage stage) throws Exception (
+Parent root =
+FXMLLoader.load(getClassO).getResource("TipCalculator.fxml"));
+Scene scene = new Scene(root); / attach scene graph to scene
+stage.setTitle("Tip Calculator"); // displayed in window's title bar
+stage.setScene(scene); // attach scene to stage
+stage.show(); // display the stage
+public static void main(String[] args) {
+// create a TipCalculator object and call its start method
+launch(args):
+Fig.12.19 |Main app class that loads and displays the Tip Calculator's GuI.
+Overridden Appl ication Method start
+Method start (lines 11-19) creates the GUI, attaches it to a Scene and
+places it on the
+Stage that method start receives as an argument. Lines 12-13 use class FXMLLoader's
+static method load to create the GUT's scene graph. This method:
+Returns a Parent (package javafx. scene) reference to the scene graph's root
+node-this is a reference to the GUT's GridPane in this app.
+• Creates an object of the TipCalculatorController class that we specified in the
+FXML file.
+• Initializes the controller's instance variables for the components chat are manip-
+ulated programmatically.
+• Attaches the event handlers specified in the FXML to the appropriate controls.
+This is known as registering the event handlers and enables the controls to call
+the corresponding methods when the user interacts with the app.
+We.discuss the initialization of the controller's instance variables and the registration of
+the event handlers in Section 12.5.5.
+Creating the Scene
+To display the GUI, you must attach it to a Scene, then attach the Scene to the Stage that
+method start receives as an argument. To attach the GUI to a Scene, line 15 creates a
+
+### Page 13
+
+10
+11
+12
+13
+462
+Chapter 12 JavaFX Graphical User Interfaces: Part 1
+ed versions of the Scene constructor allow you to specify the Scene's size and fill (a color,
+gradient or image), which appears in the Scene's background. Line 16 uses Stage method
+setTitle to specify the text that appears in the Stage window's title bar. Line 17 calls
+Stage method setScene to place the Scene onto the Stage. Finally, line 18 calls Stage
+method show to display the Stage window.
+12.5.5 TipCalculatorController Class
+Figures 12.20-12.23 present the TipCalculatorController class that responds to user
+interactions with the app's Button and Slider.
+Class TipCalculatorController's import Statements
+Figure 12.20 shows class TipCalculatorController's import statements.
+4
+// TipCalculatorController.java
+// Controller
+that handles
+calculateButton and tipPercentageSlider events
+import java.math.BigDecimal;
+importjava.math.RoundingMode;
+import java.text.NumberFormat;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxm1.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+Fig. 12.20 TipCalculatorController's import declarations.
+The classes and interfaces used by class TipCalculatorController include:
+• Class BigDecimal of package java,math (line 3) is used to perform precise mon-
+etary calculations. The RoundingMode enum of package java.math (line 4) is used
+to specify how BigDecima1 values are rounded during calculations or when for-
+matting floating-point numbers as Strings.
+• Class NumberFormat of package java. text (line 5) provides numeric formatting
+capabilities, such as locale-specific currency and percentage formats. For example,
+in the U.S. locale, the monetary value 34.95 is formatted as $34.95 and the per-
+centage 15 is formatted as 15%. Class NumberFormat determines the locale of the
+system on which your app runs, then formats currency amounts and percentages
+accordingly.
+• You implement interface ChangeListener of package javafx.beans. value (line
+6) to respond when the user moves the S1 ider's thumb. This interface's changed
+method receives an object that implements interface ObservableValue (line 7)-
+that is, a value that generates an event when it changes.
+• A. Button's event handler receives an ActionEvent object (line 8; package
+javafx.event) indicating which Button the user clicked. As vou'll see in
+12.5 Tip Calculator App-Introduction to Event Handling
+463
+• The annotation FXML (line 9; package javafx.fxm1) is used in a JavaFX controller
+class's code to mark instance variables that should refer to JavaFX components in
+the GUT's FXML file and methods that can respond to the events of JavaFX com-
+ponents in the GUT's FXML file.
+Package javafx.scene.control (lines 10-12) contains many JavaFX control
+classes, including Label, Slider and TextField.
+TipCalculatorController's static Variables and Instance Variables
+Lines 16—37 of Fig. 12.21 present class TipCalculatorController's static and in-
+stance variables. The NumberFormat objects (lines 16-19) are used to format currency val-
+ues and percentages, respectively. NumberFormat method getCurrencyInstance returns a
+NumberFormat object that formats values as currency using the default locale for the system
+on which the app is running. Similarly, NumberFormat method getPercentInstance re-
+turns a Number Format object that formats values as percentages using the system's default
+locale. The BigDecimal object tipPercentage (line 21) stores the current tip percentage
+and is used in the tip calculation (Fig. 12.22) when the user clicks the Calculate Button.
+public class TipCalculatorController (
+1/ formatters for currency and percentages
+private static final NumberFormat currency =
+NumberFormat.getCurrencyInstanceO):
+private static final NumberFormat percent =
+NumberFormat.getPercentInstanceO:
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+private BigDecimal tipPercentage = new BigDecimal(0.15); // 15% default
+// GUI controls defined in FXML and used by the controller's code
+@FXML
+private TextField amountTextField;
+@FXML
+private Label tipPercentagelabel;
+@FXML
+private Slider tipPercentageSlider;
+33
+34
+35
+36
+37
+38
+@FXML
+private TextField tipTextField;
+@FXML
+private TextField totalTextField;
+Fig. 12.21 | TipCalculatorController's static and instance variables.
+@FXML Annotation
+Recall from Section 12.5.3 that each control that this app manipulates in its Java source
+code needs an fx:id. Lines 24-37 (Fig. 12.21) declare the controller class's corresponding
+instance variables. The @FXML annotation that precedes each declaration (lines 24, 27, 30,
+
+### Page 14
+
+464 Chapter 12 JavaFX Graphical User Interfaces: Part 1
+the app's GUI. The variable names that you specify in the controller class must precisely
+match the fx:id values you specified when building the GUI. When the FXMLLoader, loads
+TipCalculator. fxml to create the GUI, it also initializes each of the controller's instance
+variables that are declared with ®FXML to ensure that they refer to the corresponding GUI
+components in the FXML file.
+TipCalculatorController's calculateButtonPressed Event Handler
+Figure 12.22 presents class TipCalculatorController's calculateButtonPressed meth-
+od, which is called when the user clicks the Calculate Button. The @FXML annotation (line
+40) preceding the method indicates that this method can be used to specify a control's
+event handler in the FXML file that describes the app's GUI. For a control that generates
+an ActionEvent (as is the case for many JavaFX controls), the event-handling method
+must return void and receive one ActionEvent parameter (line 41).
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+//calculates and displays the tip and total amounts
+@FXML
+privatevoid calculateButtonPressed(ActionEventevent) {
+BigDecimal amount = new BigDecimal(amountTextField.getText());
+BigDecimal tip = amount.multiply(tipPercentage);
+BigDecimal total = amount.add(tip);
+tipTextField.setText(currency.format(tip));
+totalTextField.setText(currency.format(total));
+catch (NumberFormatException ex) {
+amountTextField.setText("Enter amount");
+52
+amountTextField.selectAl1O;
+53
+amountTextField.requestFocusO);
+54
+}
+55
+}
+56
+Fig. 12.22 | TipCalculatorController's calculateButtonPressed event handler.
+Registering the Calculate Button's Event Handler
+When the FXMLLoader loads TipCalculator.fxm1 to create the GUI, it creates and regis-
+ters an event handler for the Calculate Button's ActionEvent. The event handler for this
+event must implement interface EventHandler<Act ionEvent>-EventHandler is a gener-
+ic type, like ArrayList (introduced in Chapter 6). This interface contains a handle meth-
+od that returns void and receives an ActionEvent parameter. This method's body, in turn,
+calls method calculateButtonPressed when the user clicks the Calculate Button. FXML-
+Loader performs similar tasks for every event listener you specify via the Scene Builder
+Inspector window's Code section.
+Calculating and Displaying the Tip and Total Amounts
+tt caleareeca desa t t nd total. in 4 calls the aounteytrip tale
+getText method to get the bill amount typed by the user. This String is passed to Big-
+nandmny'.
+12.5 Tip Calculator App—Introduction to Event Handling
+465
+number. In that case, line 51 calls amountTextField's setText method to display the mes-
+sage "Enter amount" in the TextField. Line 52 then calls method selectA11 to select the
+TextField's text and line 53 calls requestFocus to give the TextField the focus. Now the
+user can immediately type a value in the amountTextField without having to first select
+its text. Methods getText, setText and selectAll are inherited into class TextField
+from class TextInputControl (package javafx.scene.contro1), and method request-
+Focus is inherited into class TextField from class Node (package javafx.scene).
+If line 43 does not throw an exception, line 44 calculates the tip by calling method
+multiply to multiply the amount by the tipPercentage, and line 45 calculates the total
+by adding the tip to the bill amount. Next lines 47 and 48 use the currency object's
+format method to create currency-formatted Strings representing the tip and total
+amounts, which we display in tipTextField and totalTextField, respectively.
+TipCalculatorController's initalize Method
+Figure 12.23 presents class TipCalculatorController's initialize method. This meth-
+od can be used to configure the controller before the GUI is displayed. Line 60 calls the
+currency object's setRoundingMode method to specify how currency values should be
+rounded. The value RoundingMode. HALF_UP indicates that values greater than or equal to
+.5 should round up—for example, 34.567 would be formatted as 34.57 and 34.564 would
+be formatted as 34.56.
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+// called by FXMLLoader to initialize the controller
+public void initialize() {
+// 0-4 rounds down,
+5-9 rounds up
+currency.setRoundingMode(RoundingMode.HALF_UP);
+/ listener for changes to tippercentageSlider's value
+tipPercentageS1ider.valueProperty().addListener(
+new ChangeListener<Number>() (
+public voidchanged(ObservableValue<? extends Number> ov,
+Number oldValue, Number newValue) (
+BigDecimal.value0f(newValue.intValue()/100.0);
+tipPercentagelabel.setText(percent.format(tipPercentage)):
+Fig. 12.23
+| TipCalculatorController's initalize method.
+Using an Anonymous Inner Class for Event Handling
+Each JavaFX control has properties. Some--such as a STider's value—can generate events
+when they change. For such events, you must manually register as the event handler an
+object that implements the ChangeListener interface (package javafx.beans.value).
+ChangeListener is a generic type that's specialized with the property's type. The call
+
+### Page 15
+
+466 Chapter 12 JavaFX Graphical User Interfaces: Part 1:
+that represents the Slider's value. A DoubleProperty is an ObservableValue<Number>
+that can notify listeners when a value changes. Each class that implements interface
+ObservableValue provides method addListener (called on line 63) to register an event-
+handler that implements interface ChangeListener. Fora Slider's value, addListener's
+argument is an object that implements ChangeListener<Number>, because the Slider's
+If an event handler is not reused, you often define it as an instance of an anonymous
+inner class—a class that's declared without a name and typically appears inside a method.
+The addListener method's argument is specified in lines 64-72 as one statement that
+• declares the event listener's class,
+• creates an object of that class and
+• registers it as the listener for changes to the tippercentageSlider's value.
+Since an anonymous inner class has no name, you must create an object of the class at the
+point where it's declared (thus the keyword new in line 64). A reference to that object is
+then passed to addListener. After the new keyword, the syntax
+ChangeListener<Number>()
+in line 64 begins the declaration of an anonymous inner class that implements interface
+ChangeListener«Number>. This is similar to beginning a class declaration with
+public class MyHandler implements ChangeListener<Number>
+receives a reference to the ObservableValue that changed, a Number containing the
+Stider's old value before the event occurred and a Number containing the Slider's new
+value. When the user moves the Slider's thumb, lines 68-69 store the new tip percentage
+and line 70 updates the tipPercentageLabe1. (The notation ? extends Number in line 66
+indicates that the ObservableValue's type argument is a Number or a subclass of Number.
+We explain this notation in more detail in Section 20.7.)
+8
+An anonymous inner class can access its top-level class's instance variables, static vari-
+ables and methods--in this case, the anonymous inner class uses the instance variables
+tipPercentage and tipPercentageLabe1, and the static variable percent. However, an
+anonymous inner class has limited access to the local variables of the method in which it's
+declared—it can access only the final or effectively final (Java SE 8) local variables de-
+clared in the enclosing method's body.
+Software Engineering Observation 12.2
+The event listener for an event must implement the appropriate event-listener interface.
+Common Programming Error 12.1
+If you forget to register an euent-handler object for a particular GUI component's event
+12.6 Features Covered in the Other JavaFX Chapters
+467
+Java SE 8: Using a Lambda to Implement the ChangeListener
+Recall from Section 10.10 that in Java SE 8 an interface containing one method—such as
+ChangeListener in Fig. 12.23—is a functional interface. We'll show how to implement
+such interfaces with lambdas in Chapter 17.
+12.6 Features Covered in the Other JavaFX Chapters
+JavaFX isa robust GUI, graphics and multimedia technology. In Chapters 13 and 22, you'll:
+• Learn additional JavaFX layouts and controls.
+• Handle other event types (such as MouseEvents).
+• Apply transformations (such as moving, rotating, scaling and skewing) and ef-
+fects (such as drop shadows, blurs, reflection and lighting) to a scene graph's
+• Use CSS to specify the look-and-feel of controls.
+• Use JavaFX properties and data binding to enable automatic updating of controls
+as corresponding data changes.
+• Use JavaFX graphics capabilities.
+• Perform JavaFX animations.
+•Use JavaFX multimedia capabilities to play audio and video.
+In addition, our JavaFX Resource Center
+http://www.deitel.com/JavaFX
+contains links to online resources where you can learn more abour JavaFX's capabilities.
+12.7 Wrap-Up
+In this chapter, we introduced JavaFX. We presented the structure of a JavaFX stage (the
+application window). You learned that the stage displays a scene graph, that the scene
+graph is composed of nodes and that nodes consist of layouts and controls.
+You designed GUls using visual programming techniques in JavaFX Scene Builder,
+which enabled you to create GUls without writing any Java code. You arranged Labe1,
+ImageView, TextField, Slider and Button controls using the VBox and GridPane layout
+containers. You learned how class FXMLLoader uses the FXML created in Scene Builder to
+create the GUI.
+You implemented a controller class to respond to user interactions with Button and
+S1ider controls. We showed that certain event handlers can be specified directly in FXML
+from Scene Builder, but event handlers for changes to a control's property values must be
+implemented directly in the controllers code. You also learned that the FXMLLoader creates
+and initializes an instance of an application's controller class, initializes the controller's
+instance variables that are declared with the @FXML annotation, and creates and registers
+event handlers for any events specified in the FXML.
+In the next chapter, you'll use additional JavaFX controls and layouts and use CSS to
+style vour GUI. You'll also learn more about JavaFX properties and how to use a technique
+
+### Page 16
+
+468 Chapter 12 JavaFX Graphical User Interfaces: Part 1
+Summary
+Section 12.1 Introduction
+• A graphical user interface (GUI) presents a user-friendly mechanism for interacting with an app.
+A GUI (pronounced "GOO-ee") gives an app a distinctive "look-and-feel."
+• GUls are built from GUI components—sometimes called controls or widgets.
+• Providing different apps with consistent, intuitive user-interface components gives users a sense
+of familiarity with a new app, so that they can learn it more quickly and use it more productively.
+• Java's GUI, graphics and multimedia API of the future is JavaFX.
+Section 12.2 JavaFX Scene Builder
+* The Scene Builder tool is a standalone JavaFX GUI visual layout tool that can also be used with
+various IDEs.
+• JavaFX Scene Builder enables you to create GUls by dragging and dropping GU components
+from Scene Builder's library onto a design area, then modifying and styling the GUI--all with-
+out writing any code.
+• JavaEX Scene Builder's live editing and preview features allow you to view your GUI as you cre-
+ate and modify it, without compiling and running the app.
+• You can use Cascading Style Sheets (CSS) to change the entire look-and-feel of your GUI-a
+concept sometimes called skinning.
+• As you create and modify a GUI, JavaFX Scene Builder generates FXML (FX Markup Lan-
+guage)—an XML vocabulary for defining and arranging JavaFX GUI controls without writing
+any Java code.
+• XML (eXtensible Markup Language) is a widely used language for describing things—i's read-
+able both by computers and by humans.
+• FXML concisely describes GU1, graphics and multimedia elements.
+• The FXML code is separate from the program logic that's defined in Java source code.
+• Separation of the interface (the GUI) from the implementation (the Java code) makes it easier to
+debug, modify and maintain JavaFX GUI apps.
+Section 12.3 JavaFX App Window Structure
+• The window in which a JavaFX app's GUI is displayed is known as the stage and is an instance
+of class Stage (package javafx.stage).
+• The stage contains one scene that defines the GUI as a scene graph-
+-a tree structure of an app's
+visual elements, such as GUI controls, shapes, images, video, text and more. The scene is an in-
+stance of class Scene(package javafx.scene).
+•Each visual element in the scene graph is a node—an instance of a subclass of Node (package ja-
+vafx.scene), which defines common attributes and behaviors for all nodes in the scene graph.
+• The first node in the scene graph is known as the root node.
+• Nodes that have children are typically layout containers that arrange their child nodes in the scene.
+• The nodes arranged in a layout container are a combination of controls and possibly other layout
+containers.
+• When the user interacts with a control, it generates an event. Programs can use event handling
+to specify what should happen when each user interaction occurs.
+• An event handler is a method that responds to a user interaction. An FXMT. GTT'sevenr handlere
+Summary
+469
+Section 12.4 Welcome App-Displaying Text and an Image
+• Visual-programming techniques enable you to drag-and-drop JavaFX components onto Scene
+Builder's design area (known as the content panel), then use Scene Builder's Inspector to config-
+ure options.
+• Layout containers help you arrange and size GUI components.
+• A VBox layout container (package javafx.scene. layout) arranges its nodes vertically from top to
+bottom.
+• To add a layout to Scene Builder's content panel, double-click the layout in the Library window's
+Containers section or drag-and-drop the layout from the Containers section onto Scene Builder's
+content panel.
+• A VBox's Alignment property determines the layout positioning of the VBox's children.
+• Each property value you specify for a JavaFX object is used to set one of that object's instance
+variables when JavaFX creates the object at runtime.
+• The preferred size (width and height) of the scene graph's root node is used by the scene to de-
+termine its window size when the app begins executing.
+• To add a control to a layour, drag-and-drop the control from the Library onto a layout in Scene
+Builder's content panel. You also can double-click an item in the Library to add it.
+• You can set a Labe1's text either by double clicking it and typing the new text, or by selecting the
+Label and setting its Text property in the Inspector's Properties section.
+• To set a Label's font, select the Label, then in the Inspector's Properties section, click the value
+to the right of the Font property. In the window that appears, set the font's attributes.
+• You can reorder a VBox's controls by dragging them in the VBox or in Scene Builder Document
+window's Hierarchy section.
+• To specify an ImageView's image, select the ImageView, then in the Inspector's Properties section
+click the ellipsis (..) button to the right of the Image property. Select the image from the dialog.
+• To reset a property to its default value, hover the mouse over the property's value. This displays
+a button to the right of the property's value. Click the button and select Reset to Default to reset
+the value.
+• You can preview what a design will look like in a running application's window by selecting Pre-
+view > Show Preview in Window.
+Section 12.5.2 Technologies Overview
+• A JavaFX app's main class inherits from Application (package javafx.application).
+• The main class's main method calls class Application's static launch method to begin executing
+a JavaPX app. This method, in turn, causes the JavaFX runtime to create an object of the App11-
+cation subclass and call its start method, which creates the GUI, attaches it to a Scene and plac-
+es it on the Stage that method start receives as an argument.
+• A GridPane (package javafx.scene. layout) arranges JavaFX nodes into columns and rows in a
+• Each cell in a GridPane can be empty or can hold one or more JavaFX components, including
+layout containers that arrange other controls.
+• Each component in a GridPane can span multiple columns or rows.
+• A TextField (package javafx.scene.contro1) can accept text input or display text.
+• A Stider (package javafx.scene. control) represents a value in the range 0.0-100.0 by default
+
+### Page 17
+
+470~
+Chapter (2 JavaFX Graphical User Interfaces: Part 1
+• A Button (package javafx.scene.contro1) allows the user to initiate an action.
+• Class NumberFormat (package java.text) can format locale-specific currency and percentage strings.
+• GUls are event driven. When the user interacts with a GUI component, the interaction—known
+as an event—drives the program to perform a cask.
+• The code that performs a task in response to an event is called an event handler.
+• For certain events you can link a control to its event-handling method by using the Code section
+of Scene Builder's Inspector window. In this case, the class that implements the event-listener in-
+terface will be created for you and will call the method you specify.
+• For events that occur when the value of a control's property changes, you must create the event
+handler entirely in code.
+• You implement the ChangeListener interface (package javafx.beans.value) to respond when
+the user moves the Slider's thumb.
+• JavaFX applications in which the GUI is implemented as FXML adhere to the Model-View-
+Controller (MVC) design pattern, which separates an app's data (contained in the model) from
+the app's GUI (the view) and the app's processing logic (the controller). The controller imple-
+ments logic for processing user inputs. The view presents the data stored in the model. When a
+user provides input, the controller modifies the model with the given inpur. When the model
+changes, the controller updates the view to present the changed data. In a simple app, the model
+and controller are often combined into a single class.
+• In a JavaFX FXML app, you define the app's event handlers in a controller class. The controller
+class defines instance variables for interacting with controls programmatically, as well as event-
+handling methods.
+• Class FXMLLoader's static method 1oad uses the FXML file that represents the app's GUI to cre-
+ates the GUI's scene graph and returns a Parent (package javafx.scene) reference to the scene
+graph's root node. It also initializes the controller's instance variables, and creates and registers
+the event handlers for any events specified in the FXML.
+Section 12.5.3 Building the App's GUI
+• Ifa control or layout will be manipulated programmatically in the controller class, you must pro-
+vide a name for that control or layour. Each object's name is specified via its fx:id property. You
+can set this property's value by selecting a component in your scene, then expanding the Inspector
+window's Code section-the fx.id property appears at the top.
+• By default, the GridPane contains two columns and three rows. To add a row above or below an
+existing row, right click the row's tab and select either Grid Pane > Add Row Above or Grid Pane >
+Add Row Below.
+• You can delete a row or column by right clicking the tab containing its row or column number
+and selecting Delete.
+• You can set a Button's text by double clicking it, or by selecting the Button, then setting its Text
+property in the Inspector window's Properties section.
+• A GridPane column's contents are left-aligned by defaulr. To change the alignment, select the
+column by clicking the tab at the top or bottom of the column, then in the Inspector's Layout
+section, set the Halignment property.
+• Setting a node's Pref Width property of a GridPane column to its default USE_COMPUTED_SIZE value
+indicates that the width should be based on the widest child.
+• To size a Button the same width as the other controls in a GridPane's column, select the Button,
+then in the Inspector's Lavout section cr theMau Wint....t
+Summary
+471
+• The space between a node's contents and its top, right, bottom and left edges is known as the
+padding, which separates the contents from the node's edges. To set the padding, select the node,
+then in the Inspector's Layout section set the Padding property's values.
+• You can specify the default amount of space berween a GridPane's columns and rows with its
+Hgap (horizontal gap) and Vgap (vertical gap) properties, respectively.
+• You can type in a TextField only ifit's "in focus"-that is, it's the control that the user is inter-
+acting with. When you click an interactive control, it receivesthe focus. Similarly, when you
+press the Tab key, the focus transfers from the current focusable control to the next one—this
+occurs in the order the controls were added to the GUI.
+Section 12.5.4 TipCalculator Class
+• To display a GUI, you must attach it to a Scene, then attach the Scene to the Stage that's passed
+into Application method start.
+• By defaule, the Scene's size is determined by the size of the scene graph's roor node. Overloaded
+versions of the Scene constructor allow you to specify the Scene's size and fill (a color, gradient
+or image), which appears in the Scene's background.
+• Stage method setTitle specifies the text that appears in the Stage window's title bar.
+• Stage method setScene places a Scene onto a Stage.
+• Stage method show displays the Stage window.
+Section 12.5.5 TipCalculatorController Class
+• The RoundingMode enum of package java.math is used to specify how Bigbecimal values are
+rounded during calculations or when formatting floating-point numbers as Strings.
+• Class Number Format of package java. text provides numeric formatting capabilities, such as lo-
+cale-specific currency and percentage formats.
+• A Button's event handler receives an ActionEvent, which indicates that the Button was clicked.
+Many JavaFX controls support ActionEvents.
+• Package javafx. scene.control contains many JavaFX control classes.
+• The @FXML annotation preceding an instance variable indicates that the variable's name can be
+used in the FXML file that describes the app's GUI. The variable names that you specify in the
+controller class must precisely match the fx.id values you specified when building the GUI.
+• When the FXMLLoader loads an FXML file to create a GUI, it also initializes cach of the control-
+ler's instance variables that are declared with @FXML to ensure that they refer to the corresponding
+GUI components in the FXML file.
+• The @FXML annotation preceding a method indicates that the method can be used to specify a
+control's event handler in the FXML file that describes the app's GUI.
+• When the FXMLLoader creates an object of a controller class, it determines whether che class con-
+cains an initialize method with no parameters and, if so, calls that method to initialize the con-
+troller. This method can be used to configure the controller before the GUI is displayed.
+• An anonymous inner class is a class that's declared without a name and typically appears inside
+a method declaration.
+• Since an anonymous inner class has no name, one object of the class must be created at the point
+where the class is declared.
+• An anonymous inner class can access its top-level class's instance variables, static variables and
+methods hur has limited access to the local variahles of the merhod in which it's declaredit can
+
+### Page 18
+
+470 Chapter 12 JavaFX Graphical User Interfaces: Part I
+• A Button (package javafx,scene.contro1) allows the user to initiate an action.
+• Class NumberFormat (package java. text) can format locale-specific currency and percentage strings.
+• GUls are event driven. When the user interacts with a GUI component, the interaction-known
+as an event—drives the program to perform a task.
+• The code that performs a task in response to an event is called an event handler.
+• For certain events you can link a control to its event-handling method by using the Code section
+of Scene Builder's Inspector window, In this case, the class that implements the event-listener in-
+terface will be created for you and will call the method you specify.
+• For events that occur when the value of a control's property changes, you must create the event
+handler entirely in code.
+• You implement the ChangeListener interface (package javafx.beans.value) to respond when
+the user moves the Slider's thumb.
+• JavaFX applications in which the GUI is implemented as FXML adhere to the Model-View-
+Controller (MVC) design pattern, which separates an app's data (contained in the model) from
+the app's GUI (the view) and the app's processing logic (the controller). The controller imple-
+ments logic for processing user inputs. The view presents the data stored in the model. When a
+user provides input, the controller modifies the model with the given inpur. When the model
+changes, the controller updates the view to present the changed data. In a simple app, the model
+and controller are often combined into a single class.
+• In a JavaFX FXML app, you define the app's event handlers in a controller class. The controller
+class defines instance variables for interacting with controls programmatically, as well as event-
+handling methods.
+• Class FXMLLoader's static method load uses the FXML file that represents the app's GUI to cre-
+ates the GUT's scene graph and returns a Parent (package javafx. scene) reference to the scene
+graph's root node. It also initializes the controller's instance variables, and creates and registers
+the event handlers for any events specified in the FXML.
+Section 12.5.3 Building the App's GUI
+• If a control or layout will be manipulated programmatically in the controller class, you must pro-
+vide a name for that control or layour. Each object's name is specified via its fxid property. You
+can set this property's value by selecting a component in your scene, then expanding the Inspector
+window's Code section-the fx:id property appears at the top.
+• By default, the GridPane contains two columns and three rows. To add a row above or below an
+existing row, right click the row's tab and select either Grid Pane > Add Row Above or Grid Pane>
+Add Row Below.
+• You can delete a row or column by right clicking the tab containing its row or column number
+and selecting Delete.
+• You can set a Button's text by double clicking it, or by selecting the Button, then setting its Text
+property in the Inspector window's Properties section.
+• A GridPane column's contents are left-aligned by default. To change the alignment, select the
+column by clicking the tab at the top or bottom of the column, then in the Inspector's Layout
+section, set the Halignment property.
+• Setting a node's Pref Width property of a GridPane column to its default USE COMPUTED_SIZE value
+indicates that the width should be based on the widest child.
+• To size a Button the same width as the other controls in a GridPane's column, select the Button,
+Summary
+471
+• The space between a node's contents and its top, right, bottom and left edges is known as the
+padding, which separates the contents from the node's edges. To set the padding, select the node,
+then in the Inspector's Layout section set the Padding property's values.
+• You can specify the default amount of space between a GridPane's columns and rows with its
+Hgap (horizontal gap) and Vgap (vertical gap) properties, respectively.
+• You can type in a TextField only if it's "in focus"—that is, it's the control that the user is inter-
+acting with. When you click an interactive control, it receives the focus. Similarly, when you
+press the Tab key, the focus transfers from the current focusable control to the next one-this
+occurs in the order the controls were added to the GUI.
+Section 12.5.4 TipCalculator Class
+• To display a GUI, you must attach it to a Scene, then attach the Scene to the Stage that's passed
+into Application method start.
+• By default, the Scene's size is determined by the size of the scene graph's root node. Overloaded
+versions of the Scene constructor allow you to specify the Scene's size and fill (a color, gradient
+or image), which appears in the Scene's background.
+• Stage method setTitle specifies the text that appears in the Stage window's tidle bar.
+• Stage method setScene places a Scene onto a Stage.
+• Stage method show displays the Stage window.
+Section 12.5.5 TipCalculatorController Class
+• The RoundingMode enum of package java.math is used to specify how BigDecimal values are
+rounded during calculations or when formatting floating-point numbers as Strings.
+• Class NumberFormat of package java. text provides numeric formatting capabilities, such as lo-
+cale-specific currency and percentage formats.
+• A Button's event handler receives an ActionEvent, which indicates that the Button was clicked.
+Many JavaFX controls support ActionEvents.
+• Package javafx.scene.control contains many JavaFX control classes.
+• The @FXML annotation preceding an instance variable indicates that the variable's name can be
+used in the FXML file that describes the app's GUI. The variable names that you specify in the
+controller class must precisely match the fx:id values you specified when building the GUI.
+• When the FXMLLoader loads an FXML file to create a GUI, it also initializes each of the control-
+let's instance variables that are declared with @FXML to ensure that they refer to the corresponding
+GUI components in the FXML file.
+• The eFXML annotation preceding a method indicates that the method can be used to specify a
+control's event handler in the FXML file that describes the app's GUI.
+• When the FXMLLoader creates an object of a controller class, it determines whether the class con-
+cains an initialize method with no parameters and, if so, calls that method to initialize the con-
+troller. This method can be used to configure the controller before the GUI is displayed.
+• An anonymous inner class is a class that's declared without a name and typically appears inside
+a method declaration.
+• Since an anonymous inner class has no name, one object of the class must be created at the point
+where the class is declared.
+• An anonymous inner class can access its top-level class's instance variables, static variables and
+matharle hur hse limited serece io the local variahles of the method in which if's declaredir can
+
+### Page 19
+
+472
+Chapter 12 JavaFX Graphical User Interfaces: Part I
+access only the final or effectively final Java SE 8) local variables declared in the enclosing
+method's body.
+Self-Review Exercises
+12.1
+Fill in the blanks in cach of the following statements:
+A(n)
+b) Use a(n).
+can display text and accept text inpur from the user.
+to arrange GUl components into cells in a rectangular grid.
+c) JavaFX Scene Builder Document window's
+section shows the structure of
+che GUI and allows you to select and reorganize controls.
+d) You implement interface
+_to respond to events when the user moves a
+Slider's thumb.
+e) A(n)
+f)
+The method represents the app's window.
+is called by the FXMLLoader before the GUl is displayed.
+The contents of a scene are placed in its
+i) Theclements in the scene graph are called
+1)A(n) allows you to build JavaFX GUTs using drag- and-drop techniques.
+_file contains the description of a JavaFX GUI.
+12.2
+State whether each of the following is true or false. If false, explain why.
+You must create JavaFX GUIs by hand coding them in Java.
+b) The layout VBox arranges components vertically in a scene.
+c) To right align controls in a GridPane column, set its Alignment property to RIGHT.
+d) The FXMLLoader initializes the controller's eFXML instance variables.
+e) You override class Application's Taunch method to display a JavaFX app's stage.
+The control that the user is interacting with "has the focus.
+g)
+By default, a S1i der allows you to select values from 0 to 255.
+h)
+A node can span multiple columns in a GridPane.
+i)
+Every concrete Appli cation subclass must directly or indirectly override method start.
+Answers to Self-Review Exercises
+12.1 a) TextField. b) GridPane. C) Hierarchy. d) ChangeListener<Number>, e) Stage. f) initial-
+ize.g) scene graph. h) nodes. i) JavaFX Scene Builder. j) FXML.
+12.2a) False. You can use JavaFX Scene Builder tocreate JavaFX GUls without writing any
+code. b) True. c) False. The name of the property is Halignment. d) True. e) False. You override class
+Application's start method to display a JavaFX app's stage. f Truc. g) False. By default a S1ider
+allows you to select values from 0.0to 100.0.h) True. i) True.
+(Running the Welcome App) In Section 12.4, you buile the Welcome app's GUI and pre-
+viewed it using Scene Builder's Show Preview in Window option. Create an Application subclass-
+like the one shown in Section 12.5.4—to load and display Welcome. fxm1 in a JavaFX window.
+(Addition App) Create a JavaFX version of the addition program in Fig. 2.7. Use two Text-
+Fields to receive the user's input and a Button to initiate the calculation. Display the results in a
+Labe1. Since TextField method getText returns a String, you must convert the String the user
+enters to an int for use in calculations. Recall chat the static method parseint of class Integer
+takes a String argument representing an integer and returns the value as an int.
+12.2 (Scrapbooking App) Find four images of famous landmarks usine wrheiree cich... B...
+Making a Difference
+473
+that identifies each landmark. You can use images that are part of your project or you can specify
+the URL of an image that's online.
+12.3
+(Enbanced Tip Calculator App) Modify the Tip Calculator app to allow the user to enter the
+number of people in the party. Calculate and display the amount owed by each person if the bill
+were to be split evenly among the party members.
+12.4 (Mortgage Calculator App) Create a mortgage calculator app that allows the user to enter a
+purchase price, down-payment amount and an interest rate. Based on these values, the app should
+calculate the loan amount (purchase price minus down payment) and display the monthly payment
+for 10-, 20- and 30-year loans. Allow the user to select a custom loan duration (in years) by using a
+Slider and display the monthly payment for that custom loan duration.
+12.5
+(College Loan Payoff Calculator App) A bank offers college loans that can be repaid in 5, 10,
+15, 20, 25 or 30 years. Write an app that allows the user to enter the amount of the loan and the
+annual interest rate. Based on these values, the app should display the loan lengths in years and their
+corresponding monthly payments.
+12.6 (Car Payment Calculator App) Typically, banks offer car loans for periods ranging from two
+to five years (24 to 60 months). Borrowers repay the loans in monthly installments. The amount of
+each monthly payment is based on the length of the loan, the amount borrowed and the interest
+rate. Create an app that allows the customer to enter the price of a car, the down-payment amount
+and the loan's annual interest rate. The app should display the loan's duration in months and the
+monthly payments for two-, three-, four-and five-year loans. The variety of options allows the user
+to easily compare repayment plans and choose the most appropriate.
+12.7 (Miles-Per-Gallon Calculator App) Drivers often want to know the miles per gallon their cars
+get so they can estimate gasoline costs. Develop an app that allows the user to input the number of
+miles driven and the number of gallons used and calculates and displays the corresponding miles per
+gallon.
+Making a Difference
+12.8 (Body Mass Index Calculator App) The formulas for calculating the BMI are
+weightinlounds X703
+BMII - heightininchesxheightlninches
+or
+weightlnKilograms
+BMI = beightinMeters x heightinMeters
+Create a BMI calculator app that allows users to enter their weight and height and whether they are
+entering these values in English or metric units, then calculates and displays the user's body mass
+index. The app should also display the following information from the Department of Health and
+Human Services/National Institutes of Health so that users can evaluate their BMIs:
+BMI VALUES
+Underweight: less than 18.5
+Normal:
+between 18.5 and 24.9
+Overweight: between 25 and 29.9
+Obese:
+30 or greater
+12.9
+(Target-Heart-Rate Calculator App) While exercising, you can use a heart-rate monitor to see
+that your heart rate stays within a safe range suggested by your trainers and doctors. According to
+the American Heart Association (AHA), the formula for calculating your maximum heart rate in
+beats per minute is 220minus your age in years(http://bit.1y/AHATargetHeartRates). Your target
+homronteies ronnarharieSn_R50h aFuanemseimim hanermea Enen. Thaan Criom.elanaun maetanens
